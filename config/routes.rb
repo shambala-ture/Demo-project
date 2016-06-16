@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/administrator', as: 'rails_admin'
   get 'welcome/index'
 
   devise_for :admins
