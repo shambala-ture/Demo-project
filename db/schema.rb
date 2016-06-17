@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617073648) do
+ActiveRecord::Schema.define(version: 20160617142555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 20160617073648) do
     t.datetime "image_updated_at"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "status"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "configs", force: :cascade do |t|
     t.string   "key"
     t.string   "value"
@@ -51,4 +59,45 @@ ActiveRecord::Schema.define(version: 20160617073648) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "product_attribute_associations", force: :cascade do |t|
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_attributes", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "product_categories", ["category_id"], name: "index_product_categories_on_category_id", using: :btree
+  add_index "product_categories", ["product_id"], name: "index_product_categories_on_product_id", using: :btree
+
+  create_table "product_images", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.text     "description"
+    t.string   "name"
+    t.decimal  "price"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_foreign_key "product_categories", "categories"
+  add_foreign_key "product_categories", "products"
 end
