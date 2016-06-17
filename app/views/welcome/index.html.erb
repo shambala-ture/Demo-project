@@ -1,2 +1,13 @@
 <h1>Welcome</h1>
 <p>All</p>
+
+  <% @banners.each do |banner| %>
+    <tr>
+      <td><%= banner.description %></td>
+    </tr>
+    <%= image_tag banner.image.url%>
+    <!--
+    <%= image_tag banner.image.url(:medium) %>
+    <%= image_tag banner.image.url(:thumb) %>
+  -->
+  <% end %>
