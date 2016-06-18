@@ -1,13 +1,9 @@
-<h1>Welcome</h1>
-<p>All</p>
-
-  <% @banners.each do |banner| %>
-    <tr>
-      <td><%= banner.description %></td>
-    </tr>
-    <%= image_tag banner.image.url%>
-    <!--
-    <%= image_tag banner.image.url(:medium) %>
-    <%= image_tag banner.image.url(:thumb) %>
-  -->
-  <% end %>
+<%= render 'slider' %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <%= render 'left_sidebar' %>
+        <%= render 'content' %>
+      </div>
+    </div>
+  </section>
