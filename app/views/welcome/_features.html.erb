@@ -1,6 +1,6 @@
 <div class="features_items"><!--features_items-->
   <h2 class="title text-center">Features Items</h2>
-  <% 6.times do %>
-  <%= render 'product' %>
+  <% @products.each do |product| %>
+  <%= render 'product', product: product %>
   <%end %>
 </div><!--features_items-->
