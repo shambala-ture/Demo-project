@@ -1,23 +1,28 @@
 <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+ 
   <% @categories.each do |category| %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+          <a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name %>" class="collapsed">
+            <% if !category.subcategories.blank? %>
             <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-            <%= category.name %>
+            <% end %>
+            <%= link_to category.name, category_path(id: category) %>
           </a>
         </h4>
       </div>
-      <div id="sportswear" class="panel-collapse collapse">
+      <% if !category.subcategories.blank? %>
+      <div id="<%= category.name %>" class="panel-collapse collapse in" style="height: 0px;">
         <div class="panel-body">
           <ul>
             <% category.subcategories.each do |subcategory| %>
-              <li><a href="#"><%= subcategory.name %></a></li>
+            <li> <%= link_to subcategory.name, category_subcategory_path(category_id: category.id, id: subcategory) %></li>
             <% end %>
           </ul>
         </div>
       </div>
-    </div>
+      <% end %>
+    </div>   
   <%end %>
-</div><!--/category-products-->
+</div>
