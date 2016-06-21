@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   mount RailsAdmin::Engine => '/administrator', as: 'rails_admin'
   get 'welcome/index'
 
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  
+  get '/login', to: 'welcome#login'
   resources :banners
   resources :categories do 
     resources :subcategories

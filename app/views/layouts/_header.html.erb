@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="logo pull-left">
-              <a href="http://localhost:3000"><%= image_tag("home/logo.png", alt:"")%></a>
+              <%= link_to image_tag("home/logo.png", :alt => ""), root_path %>
             </div>
             <div class="btn-group pull-right">
               <div class="btn-group">
@@ -63,7 +63,21 @@
                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                 <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                
+                <li><% if user_signed_in? %>Logged in as <strong><%= current_user.email %></strong>.
+                <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+                <% else %>
+                <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %>
+                <li><%= link_to '<i class="fa fa-lock"></i>Login'.html_safe, login_path, :class => 'navbar-link'%></li>
+                <% end %>
+                </li>
+
+
+
+
+
+
               </ul>
             </div>
           </div>
