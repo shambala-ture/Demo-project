@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :categories do 
     resources :subcategories
   end
+  resources :carts
+  get '/user_carts', to: 'carts#show'
   # root 'categories#show'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
