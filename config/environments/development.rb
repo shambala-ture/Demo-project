@@ -32,11 +32,11 @@ Rails.application.configure do
   config.assets.digest = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address:              '',
+      address:              '206.183.111.214',
       port:                 25,
-      domain:               '',
-      user_name:            '',
-      password:             '',
+      domain:               'wwindia.com',
+      user_name:            'ranjeev.kumar@wwindia.com',
+      password:             'ranjeev.123',
       authentication:       'plain',
       openssl_verify_mode:  'none'
     }
