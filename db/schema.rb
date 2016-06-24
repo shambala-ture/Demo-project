@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622105502) do
+ActiveRecord::Schema.define(version: 20160624135750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.text     "address_1"
+    t.text     "address_2"
+    t.string   "city"
+    t.string   "country"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -62,6 +73,17 @@ ActiveRecord::Schema.define(version: 20160622105502) do
     t.string   "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string   "code"
+    t.integer  "create_by_id"
+    t.decimal  "discount_of",    precision: 5, scale: 2
+    t.integer  "modified_by_id"
+    t.integer  "no_of_uses"
+    t.boolean  "status"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "product_attribute_associations", force: :cascade do |t|

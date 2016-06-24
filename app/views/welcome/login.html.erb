@@ -26,7 +26,7 @@
           <div class="signup-form"><!--sign up form-->
             <h2>New User Signup!</h2>
             <%= form_for(:user, :url => session_path(:user)) do |f| %>
-            <%= devise_error_messages! %>
+            <%#= devise_error_messages! %>
             <form action="#">
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true %>

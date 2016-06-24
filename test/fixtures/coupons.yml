@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  create_by_id: 1
+  discount_of: 9.99
+  modified_by_id: 1
+  no_of_uses: 1
+  status: false
+
+two:
+  code: MyString
+  create_by_id: 1
+  discount_of: 9.99
+  modified_by_id: 1
+  no_of_uses: 1
+  status: false
