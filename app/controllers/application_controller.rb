@@ -9,4 +9,19 @@ class ApplicationController < ActionController::Base
     @categories = Category.where(parent_id: nil)
   end
   
+  before_filter :set_cart_quantity_price, :only => [:show, :checkout]
+  def set_cart_quantity_price
+    @quantities = {}
+    @uniq_prods = session[:product_id].uniq
+    @uniq_prods.each do |i| 
+      @quantities[i] =  session[:product_id].count(i) 
+    end
+    @cart_products = {}
+    @quantities.each do |k,v|
+      product=Product.find(k)
+      @cart_products[product]={"quantity": v,"total_price": v * product.price}
+    end
+    @total=0
+  end
+  
 end

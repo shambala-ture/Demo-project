@@ -1,0 +1,20 @@
+<div class="row"> 
+<% @addresses.each do |address|%>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= address.name %></div>
+      <div class="panel-body"><%= address.address_1 %></div>
+      <div class="panel-body"><%= address.address_2 %></div>
+      <div class="panel-body"><%= address.city %></div>
+      <div class="panel-body"><%= address.country %></div>
+      <div class="panel-body"><%= address.state %></div>
+      <div class="panel-body"><%= address.zipcode %></div>
+      <%= link_to 'Edit', edit_address_path(address) %>
+      <%= link_to 'Destroy', address_path(address),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+    </div>  
+  </div>
+<% end %>
+  <%=link_to 'New', new_address_path %>
+</div>

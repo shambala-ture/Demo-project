@@ -62,7 +62,7 @@
                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                <li><%= link_to '<i class="fa fa-shopping-cart"></i>Cart'.html_safe,user_carts_path %></li><li><%= session[:product_id].count%></li>
+                <li><%= link_to '<i class="fa fa-shopping-cart"></i>Cart' "(#{(session[:product_id].count)})".html_safe,user_carts_path%></li>
                 
                 <li><% if user_signed_in? %>Logged in as <strong><%= current_user.email %></strong>.
                 <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>

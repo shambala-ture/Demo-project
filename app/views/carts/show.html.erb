@@ -22,13 +22,12 @@
           <% @cart_products.each do |product,v| %>
             <tr>
               <td class="cart_product">
-                <a href="">
+                <a href="#">
                 <% if product.product_images.count > 0 %>
                   <%= image_tag(product.product_images.first.image.url) %>
                 <% else %>
                   <%= image_tag("home/missing.jpg", alt: "") %>
-                <% end %>
-          <%#= image_tag("images/cart/one.png", alt: "")%></a>
+                <% end %></a>
               </td>
               <td class="cart_description">
                 <h4><%= link_to product.name%></h4>
@@ -132,7 +131,8 @@
               <li>Total <span><%= @total %></span></li>
             </ul>
               <a class="btn btn-default update" href="">Update</a>
-              <a class="btn btn-default check_out" href="">Check Out</a>
+              <%= link_to "Check Out", user_carts_checkout_path , :class => "btn btn-default check_out"%>
+              <!-- <a class="btn btn-default check_out" href="">Check Out</a> -->
           </div>
         </div>
       </div>

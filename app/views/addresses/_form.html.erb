@@ -1,0 +1,14 @@
+<html>
+  <%= form_for @addresses do |f| %>
+    <ul>
+      <li><label for="name">Name:</label> <input type="text" name="name" id="name" value="" /></li>
+       <li><label for="address_1">Address_1:</label> <textarea name="Address_1" id="Address_1" cols="25" rows="3"></textarea></li>
+       <li><label for="address_2">Address_2:</label> <textarea name="Address_2" id="Address_2" cols="25" rows="3"></textarea></li>
+      <li><label for="city">City:</label> <input type="text" name="city" id="city" value="" /></li>
+      <li><label for="country">Country:</label> <input type="text" name="country" id="country" value="" /></li>
+      <li><label for="state">State:</label> <input type="text" name="state" id="state" value="" /></li>
+      <li><label for="zipcode">ZipCode:</label> <input type="text" name="zipcode" id="zipcode" value="" /></li>
+    </ul>
+    <%= f.submit %>
+  <% end %>
+</html>

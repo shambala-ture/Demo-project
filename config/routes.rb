@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'addresses/index'
+
   devise_for :users
   mount RailsAdmin::Engine => '/administrator', as: 'rails_admin'
   get 'welcome/index'
@@ -15,9 +17,14 @@ Rails.application.routes.draw do
     resources :subcategories
   end
   resources :carts
+  resources :addresses
+  # get '/addresses', to: 'addresses#index'
+  # get '/addresses_new', to: 'addresses#new'
+
   get '/user_carts', to: 'carts#show'
   get '/user_carts_add', to: 'carts#add_product'
   get '/user_carts_remove', to: 'carts#remove_product'
+  get '/user_carts_checkout', to: 'carts#checkout'
   # root 'categories#show'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
