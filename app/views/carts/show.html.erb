@@ -52,7 +52,9 @@
                 </p>
               </td>
               <td class="cart_delete">
-                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                <%= link_to '<i class="fa fa-times"></i>'.html_safe,user_carts_remove_product_path(:product_id=>product),
+              data: { confirm: 'Are you sure?' }, method: :delete,:class=>"cart_quantity_delete"%>
+                <!-- <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a> -->
               </td>
             </tr>
           <% end %>

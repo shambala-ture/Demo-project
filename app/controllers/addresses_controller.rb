@@ -4,46 +4,49 @@ class AddressesController < ApplicationController
     # @users=User.last
     # @users.id
   end
-  def show
-    @addresses = Address.find(params[:id])
-  end
-
+  
   def new
-    @addresses = Address.new
+    @address = Address.new
+
   end
 
   def edit
-    @addresses = Address.find(params[:id])
+    @address = Address.find(params[:id])
   end
 
   def create
-    @addresses = Address.new(params[:address])
-    
-    if @addresses.save
-      redirect_to @addresses
+    # binding.pry
+    @address = Address.new(address_params)
+    @address.user=current_user
+    if @address.save
+      flash[:notice] = "Address was successfully created."
+      redirect_to addresses_path
     else 
       render 'new'
     end
+   
   end
 
   def update
-    @addresses = Address.find(params[:id])
-    if @addresses.update(params[:address])
-      redirect_to @addresses
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      flash[:notice] = "Address was successfully updated."
+      redirect_to addresses_path
     else
       render 'edit'
     end
+   
   end
 
   def destroy
-    @addresses = Address.find(params[:id])
-    @addresses.destroy
-   
+    @address = Address.find(params[:id])
+    @address.destroy
+    flash[:notice] = "Address was removed successfully."
     redirect_to addresses_path
   end
 
-# private
-#   def address_params
-#     params.require(:address).permit(:name, :address_1)
-#   end
+private
+  def address_params
+    params.require(:address).permit!
+  end
 end
