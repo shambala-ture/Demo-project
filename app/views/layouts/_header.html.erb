@@ -100,8 +100,8 @@
                                         <li><a href="shop.html">Products</a></li>
                     <li><a href="#">Product Details</a></li> 
                     <li><a href="#">Checkout</a></li> 
-                    <li><%= link_to 'Cart'%></li> 
-                    <li><a href="#">Login</a></li> 
+                    <li><%= link_to 'Cart' "(#{(session[:product_id].count)})".html_safe,user_carts_path%></li> 
+                    <li><%= link_to 'Login'.html_safe, login_path, :class => 'navbar-link'%></li> 
                                     </ul>
                                 </li> 
                 <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
@@ -110,7 +110,7 @@
                     <li><a href="#">Blog Single</a></li>
                                     </ul>
                                 </li> 
-                <li><a href="http://10.0.100.107:3000/404.html">404</a></li>
+                <li><a href="#">404</a></li>
                 <li><a href="#">Contact</a></li>
               </ul>
             </div>

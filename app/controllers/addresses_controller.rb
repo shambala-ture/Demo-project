@@ -1,8 +1,6 @@
 class AddressesController < ApplicationController
   def index
     @addresses=current_user.addresses
-    # @users=User.last
-    # @users.id
   end
   
   def new

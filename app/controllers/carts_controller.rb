@@ -7,13 +7,13 @@ class CartsController < ApplicationController
 
   def new
     session[:product_id] << params["product_id"]
-    flash[:notice] = "Product was successfully created."
+    flash[:notice] = "Product was successfully added."
     redirect_to root_path
   end
 
   def increment_product_quantity
     session[:product_id] << params["product_id"]
-    flash[:notice] = "Product was successfully created."
+    flash[:notice] = "Product was successfully added."
     redirect_to user_carts_path
   end
 
@@ -31,6 +31,9 @@ class CartsController < ApplicationController
   session[:product_id].delete(params[:product_id])
   flash[:notice] = "Product was removed successfully."
   redirect_to user_carts_path
+ end
+ def apply_coupon
+   
  end
 
 end

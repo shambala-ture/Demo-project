@@ -44,7 +44,7 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { :host => 'http://10.0.100.107', :port => 3000 }
   # config.assets.css_compressor = :yui
   # config.assets.css_compressor = :sass
   # config.assets.js_compressor = :uglifier
