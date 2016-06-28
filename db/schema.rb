@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627070815) do
+ActiveRecord::Schema.define(version: 20160628150219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(version: 20160627070815) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end
+
+  create_table "payment_gateways", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "payment_gateways", ["user_id"], name: "index_payment_gateways_on_user_id", using: :btree
 
   create_table "product_attribute_associations", force: :cascade do |t|
     t.boolean  "status"
@@ -190,6 +199,7 @@ ActiveRecord::Schema.define(version: 20160627070815) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "payment_gateways", "users"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "used_coupons", "coupons"

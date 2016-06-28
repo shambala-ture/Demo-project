@@ -26,6 +26,10 @@ Rails.application.routes.draw do
   get '/user_carts_remove', to: 'carts#decrement_product_quantity'
   get '/user_carts_checkout', to: 'carts#checkout'
   delete '/user_carts/remove_product', to: 'carts#remove_product'
+  get "/404", :to => "errors#not_found"
+  get "/422", :to => "errors#unacceptable"
+  get "/500", :to => "errors#internal_error"
+
   # root 'categories#show'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

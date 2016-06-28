@@ -9,8 +9,9 @@ class ApplicationController < ActionController::Base
     @categories = Category.where(parent_id: nil)
   end
   
-  before_filter :set_cart_quantity_price, :only => [:show, :checkout]
+  before_filter :set_cart_quantity_price, :only => [:show, :checkout, :apply_coupon]
   def set_cart_quantity_price
+    @total=0
     @quantities = {}
     @uniq_prods = session[:product_id].uniq
     @uniq_prods.each do |i| 
@@ -19,9 +20,10 @@ class ApplicationController < ActionController::Base
     @cart_products = {}
     @quantities.each do |k,v|
       product=Product.find(k)
-      @cart_products[product]={"quantity": v,"total_price": v * product.price}
+      total_price = v * product.price
+      @cart_products[product]={"quantity": v,"total_price": total_price}
+      @total += total_price
     end
-    @total=0
   end
   
 end
