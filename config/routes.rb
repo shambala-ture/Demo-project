@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   # get '/addresses', to: 'addresses#index'
   # get '/addresses_new', to: 'addresses#new'
   post '/user_carts/apply_coupon', to: 'carts#apply_coupon'
+  delete '/user_carts/remove_coupon', to: 'carts#remove_coupon'
   get '/user_carts', to: 'carts#show'
   get '/user_carts_add', to: 'carts#increment_product_quantity'
   get '/user_carts_remove', to: 'carts#decrement_product_quantity'

@@ -121,6 +121,7 @@
           </thead>
           <tbody>
             <% @cart_products.each do |product,v| %>
+
             <tr>
               <td class="cart_product">
                 <a href="#">
@@ -155,37 +156,8 @@
               </td>
             </tr>
             <% end %>
-
-              <td colspan="4">
-                <%= form_tag('/user_carts/apply_coupon', remote: true) do %>
-                <label>Select Coupon</label><br>
-                 <input type="text" name="coupon" placeholder="Select Coupon"><br>
-                  <%= button_tag 'Apply', {class:'btn btn-primary'}%>
-                <% end %>
-                <div id="coupon_response">
-                </div>               
-              </td>
-
-              <td colspan="2">
-                <table class="table table-condensed total-result">
-                  <tr>
-                    <td>Cart Sub Total</td>
-                    <td><%= @total %></td>
-                  </tr>
-                  <tr>
-                    <td>Exo Tax</td>
-                    <td>Free</td>
-                  </tr>
-                  <tr class="shipping-cost">
-                    <td>Shipping Cost</td>
-                    <td>Free</td>                   
-                  </tr>
-                  <tr>
-                    <td>Total</td>
-                    <td><span id="total"><%= @total %></span></td>
-                  </tr>
-                </table>
-              </td>
+            <tr id="coupon_and_total">
+              <%= render 'coupon_total' %>
             </tr>
           </tbody>
         </table>

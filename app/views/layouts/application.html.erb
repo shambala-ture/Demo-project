@@ -28,7 +28,9 @@
       <script src="assets/main.js"></script>
   </head>
   <body>
-    <%= render 'layouts/header' %>
+    <div id ="cart_count">
+      <%= render 'layouts/header' %>
+    </div>
     <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: "alert alert-info" %>
     <% end %>

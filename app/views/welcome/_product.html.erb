@@ -10,14 +10,14 @@
           <% end %>
           <h2><%= product.price %></h2>
           <p><%= product.name %></p>
-          <%= link_to '<i class="fa fa-shopping-cart"></i>Add to Cart'.html_safe, new_cart_path(:product_id => product),:class =>"btn btn-default add-to-cart" %>
+          <%= link_to '<i class="fa fa-shopping-cart"></i>Add to Cart'.html_safe, new_cart_path(:product_id => product), :class =>"btn btn-default add-to-cart", remote:true, method: :get %>
           <!-- <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> -->
         </div>
         <div class="product-overlay">
           <div class="overlay-content">
             <h2><%= product.price %></h2>
             <p><%= product.name %></p>
-            <%= link_to '<i class="fa fa-shopping-cart"></i>Add to Cart'.html_safe, new_cart_path(:product_id => product),:class =>"btn btn-default add-to-cart" %>
+            <%= link_to '<i class="fa fa-shopping-cart"></i>Add to Cart'.html_safe, new_cart_path(:product_id => product), :class =>"btn btn-default add-to-cart",remote:true, method: :get%>
           </div>
         </div>
     </div>
