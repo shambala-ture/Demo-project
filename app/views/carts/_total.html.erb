@@ -1,0 +1,20 @@
+<table class="table table-condensed total-result">
+  <tbody>
+    <tr>
+      <td>Cart Sub Total</td>
+      <td><%= @total %></td>
+    </tr>
+    <tr>
+      <td>Discount_amount</td>
+      <td><%= get_discount_amount %></td>
+    </tr>
+    <tr class="shipping-cost">
+      <td>Shipping Cost</td>
+      <td>Free</td>                   
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td><span id="total"><%= @total %></span></td>
+    </tr>
+  </tbody>
+</table>

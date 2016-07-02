@@ -121,8 +121,8 @@
           </thead>
           <tbody>
             <% @cart_products.each do |product,v| %>
-
-            <tr>
+              <%# if @cart_products[@product].count > 0 %>
+            <tr id="product_<%= product.id %>">
               <td class="cart_product">
                 <a href="#">
                   <% if product.product_images.count > 0 %>
@@ -131,22 +131,22 @@
                     <%= image_tag("home/missing.jpg", alt: "") %>
                   <% end %></a>
               </td>
-              <td class="cart_description">
+              <td class="product_description">
                 <h4><%= link_to product.name%></h4>
                 <p>Web ID: 1089772</p>
               </td>
-              <td class="cart_price">
+              <td class="product_price">
                 <p><%= product.price %></p>
               </td>
-              <td class="cart_quantity">
+              <td class="product_quantity">
                 <div class="cart_quantity_button">
-                  <%=link_to  "+", user_carts_add_path(:product_id => product) %>
-                  <input class="cart_quantity_input" type="text" name="quantity" value=<%=v[:quantity]%> autocomplete="off" size="2">
-                  <%=link_to  "-", user_carts_remove_path(:product_id => product) %>
+                  <%=link_to  "+", user_carts_update_product_quantity_path(:product_id => product, product_action: "added") , remote:true%>
+                 <input class="cart_quantity_input product_<%= product.id %>" type="text" name="quantity" value=<%=v[:quantity]%> autocomplete="off" size="2">
+                  <%=link_to  "-", user_carts_update_product_quantity_path(product_id: product, product_action: "removed"), remote:true %>
                 </div>
               </td>
-              <td class="cart_total">
-                <p class="cart_total_price">
+              <td class="product_total">
+                <p class="product_total_price_<%= product.id%>">
                   <%= v[:total_price]%>
                 </p>
               </td>
@@ -155,6 +155,7 @@
               data: { confirm: 'Are you sure?' }, method: :delete,:class=>"cart_quantity_delete"%>
               </td>
             </tr>
+            <%# end %>
             <% end %>
             <tr id="coupon_and_total">
               <%= render 'coupon_total' %>
