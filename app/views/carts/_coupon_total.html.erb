@@ -11,12 +11,12 @@
 <td colspan="2">
   <div class="coupon_response1">
     <% if session[:coupon].present? %>
-    <ul>
+    <ul id="remove_coupon">
       <label>Remove Coupon</label><br>
       <li>
         <%= @message %>
       </li>
-      <li><%= link_to '<i class="fa fa-times"></i>'.html_safe, user_carts_remove_coupon_path, data: { confirm: 'Are you sure?' }, method: :delete, :class=>"cart_quantity_delete", remote:true %>
+      <li><%= link_to '<i class="fa fa-times"></i>'.html_safe, user_carts_remove_coupon_path, data: { confirm: 'Are you sure?' }, method: :delete, :class=>"cart_quantity_delete" %>
       </li>
     </ul>
    <% end %>

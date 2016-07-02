@@ -1,0 +1,6 @@
+function validate(form) {
+  if(form.options[0].checked==false && form.options[1].checked==false && form.options[2].checked==false) {
+    alert('Please check at least one of the options.');
+    return false;
+  }
+  return true;

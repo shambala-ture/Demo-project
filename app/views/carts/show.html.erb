@@ -20,7 +20,6 @@
           </thead>
            <tbody>
             <% @cart_products.each do |product,v| %>
-              <%# if @cart_products[@product].count > 0 %>
             <tr id="product_<%= product.id %>">
               <td class="cart_product">
                 <a href="#">
@@ -54,7 +53,6 @@
               data: { confirm: 'Are you sure?' }, method: :delete,:class=>"cart_quantity_delete"%>
               </td>
             </tr>
-            <%# end %>
             <% end %>
           </tbody>
          

@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   # before_action :authenticate_user!
   
+  before_filter :set_cart_quantity_price, :only => [:show, :checkout, :apply_coupon, :update_product_quantity]
   before_filter :set_parent_categories
   def set_parent_categories
     @categories = Category.where(parent_id: nil)
   end
   
-  before_filter :set_cart_quantity_price, :only => [:show, :checkout, :apply_coupon]
   def set_cart_quantity_price
     @total=0
     @quantities = {}

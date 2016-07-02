@@ -2,6 +2,7 @@
   <div class="container">
     <%=link_to 'Add Address', new_address_path %> <br><br>
     <div class="row">
+      <%= form_tag(payment_path, :method=>'post') do %>
       <% @addresses.each do |address|%>
         <div class="col-sm-4">
           <div class="panel panel-default">
@@ -16,8 +17,14 @@
 Destroy'.html_safe, address_path(address),
               method: :delete,
               data: { confirm: 'Are you sure?' }, :class =>"pull-right" %></div>
-          </div>  
+          </div>
+         <%=check_box_tag 'billingaddress'%>Billing Address
+         <%=check_box_tag 'shippingaddress'%>Shipping Address
         </div>
+      <% end %>
+      <div class="pull-right">
+        <%= submit_tag 'Confirm Address', {class:'btn btn-primary'}%>
+      </div>
       <% end %>
     </div>
   </div>

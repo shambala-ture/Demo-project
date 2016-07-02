@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders/index'
+
   get 'addresses/index'
 
   devise_for :users
@@ -17,14 +19,17 @@ Rails.application.routes.draw do
     resources :subcategories
   end
   resources :carts
+  resources :orders
+  post '/payment', to: 'orders#payment'
   resources :addresses
   # get '/addresses', to: 'addresses#index'
   # get '/addresses_new', to: 'addresses#new'
   post '/user_carts/apply_coupon', to: 'carts#apply_coupon'
   delete '/user_carts/remove_coupon', to: 'carts#remove_coupon'
   get '/user_carts', to: 'carts#show'
-  get '/user_carts_add', to: 'carts#increment_product_quantity'
-  get '/user_carts_remove', to: 'carts#decrement_product_quantity'
+  # get '/user_carts_add', to: 'carts#increment_product_quantity'
+  # get '/user_carts_remove', to: 'carts#decrement_product_quantity'
+  get '/user_carts_update_product_quantity', to: 'carts#update_product_quantity'
   get '/user_carts_checkout', to: 'carts#checkout'
   delete '/user_carts/remove_product', to: 'carts#remove_product'
   get "/404", :to => "errors#not_found"

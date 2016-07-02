@@ -1,11 +1,11 @@
 class AddressesController < ApplicationController
   def index
     @addresses=current_user.addresses
+    flash[:notice] = "Select your Shipping or Billing addresses #{params[:output_flash=>"select_address"]}."
   end
   
   def new
     @address = Address.new
-
   end
 
   def edit
@@ -13,7 +13,6 @@ class AddressesController < ApplicationController
   end
 
   def create
-    # binding.pry
     @address = Address.new(address_params)
     @address.user=current_user
     if @address.save
@@ -22,7 +21,6 @@ class AddressesController < ApplicationController
     else 
       render 'new'
     end
-   
   end
 
   def update
@@ -33,7 +31,6 @@ class AddressesController < ApplicationController
     else
       render 'edit'
     end
-   
   end
 
   def destroy
@@ -43,7 +40,7 @@ class AddressesController < ApplicationController
     redirect_to addresses_path
   end
 
-private
+  private
   def address_params
     params.require(:address).permit!
   end

@@ -162,6 +162,10 @@
             </tr>
           </tbody>
         </table>
+         <div class ="pull-right">
+          <%#= link_to "Update",  user_carts_checkout_path, :class => "btn btn-default check_out"%>
+          <%= link_to "Make a Payment", addresses_path ,:output_flash=>"select_address", :class => "btn btn-default check_out"%>
+        </div>
       </div>
     </div>
   </section> <!--/#cart_items-->
