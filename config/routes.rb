@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
   resources :carts
   resources :orders
-  post '/payment', to: 'orders#payment'
+  # get '/payment', to: 'orders#show', as: 'payment'
   resources :addresses
   # get '/addresses', to: 'addresses#index'
   # get '/addresses_new', to: 'addresses#new'

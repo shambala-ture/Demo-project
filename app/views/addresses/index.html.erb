@@ -2,29 +2,34 @@
   <div class="container">
     <%=link_to 'Add Address', new_address_path %> <br><br>
     <div class="row">
-      <%= form_tag(payment_path, :method=>'post') do %>
-      <% @addresses.each do |address|%>
-        <div class="col-sm-4">
-          <div class="panel panel-default">
-            <div class="panel-heading"><%= address.name %></div>
-            <div class="panel-body"><%= address.address_1 %></div>
-            <div class="panel-body"><%= address.address_2 %></div>
-            <div class="panel-body"><%= address.city %></div>
-            <div class="panel-body"><%= address.country %></div>
-            <div class="panel-body"><%= address.state %></div>
-            <div class="panel-body"><%= address.zipcode %></div>
-            <div class="panel-footer"><%= link_to '<i class="fa fa-pencil-square-o"></i>Edit'.html_safe, edit_address_path(address) %><%= link_to '<i class="fa fa-trash-o"></i>
-Destroy'.html_safe, address_path(address),
-              method: :delete,
-              data: { confirm: 'Are you sure?' }, :class =>"pull-right" %></div>
+      <%= form_tag('/orders', { class: 'test', :onSubmit => 'return validateform();'}) do %>
+        <% @addresses.each do |address|%>
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <%= hidden_field_tag :address_id, address.id %>
+              <div class="panel-heading"><%= address.name %></div>
+              <div class="panel-body"><%= address.address_1 %></div>
+              <div class="panel-body"><%= address.address_2 %></div>
+              <div class="panel-body"><%= address.city %></div>
+              <div class="panel-body"><%= address.country %></div>
+              <div class="panel-body"><%= address.state %></div>
+              <div class="panel-body"><%= address.zipcode %></div>
+              <div class="panel-footer"><%= link_to '<i class="fa fa-pencil-square-o"></i>Edit'.html_safe, edit_address_path(address) %><%= link_to '<i class="fa fa-trash-o"></i>
+  Destroy'.html_safe, address_path(address),
+                method: :delete,
+                data: { confirm: 'Are you sure?' }, :class =>"pull-right" %></div>
+            </div>
+              <div class="selectme">
+                <%= check_box_tag 'billingaddress',1,false, class: 'billing' %> Billing Address
+              </div>
+              <div class="selectme">
+                <%= check_box_tag 'shippingaddress',1,false, class: 'shipping' %> Shipping Address
+              </div>
           </div>
-         <%=check_box_tag 'billingaddress'%>Billing Address
-         <%=check_box_tag 'shippingaddress'%>Shipping Address
+        <% end %>
+        <div class="pull-right">
+          <%= submit_tag 'Confirm Address', {class:'btn btn-primary'} %>
         </div>
-      <% end %>
-      <div class="pull-right">
-        <%= submit_tag 'Confirm Address', {class:'btn btn-primary'}%>
-      </div>
       <% end %>
     </div>
   </div>
