@@ -6,7 +6,6 @@
         <% @addresses.each do |address|%>
           <div class="col-sm-4">
             <div class="panel panel-default">
-              <%= hidden_field_tag :address_id, address.id %>
               <div class="panel-heading"><%= address.name %></div>
               <div class="panel-body"><%= address.address_1 %></div>
               <div class="panel-body"><%= address.address_2 %></div>
@@ -20,16 +19,16 @@
                 data: { confirm: 'Are you sure?' }, :class =>"pull-right" %></div>
             </div>
               <div class="selectme">
-                <%= check_box_tag 'billingaddress',1,false, class: 'billing' %> Billing Address
+                <%= check_box_tag 'billingaddress',address.id,false, class: 'billing' %> Billing Address
               </div>
               <div class="selectme">
-                <%= check_box_tag 'shippingaddress',1,false, class: 'shipping' %> Shipping Address
+                <%= check_box_tag 'shippingaddress',address.id,false, class: 'shipping' %> Shipping Address
               </div>
           </div>
         <% end %>
-        <div class="pull-right">
-          <%= submit_tag 'Confirm Address', {class:'btn btn-primary'} %>
-        </div>
+          <div class="pull-right">
+            <%= submit_tag 'Confirm Address', {class:'btn btn-primary'} %>
+          </div>
       <% end %>
     </div>
   </div>

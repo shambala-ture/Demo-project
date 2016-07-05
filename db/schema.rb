@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702074915) do
+ActiveRecord::Schema.define(version: 20160705120916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,12 +109,10 @@ ActiveRecord::Schema.define(version: 20160702074915) do
 
   create_table "payment_gateways", force: :cascade do |t|
     t.string   "name"
-    t.integer  "user_order_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "order_id"
   end
-
-  add_index "payment_gateways", ["user_order_id"], name: "index_payment_gateways_on_user_order_id", using: :btree
 
   create_table "product_attribute_associations", force: :cascade do |t|
     t.boolean  "status"
@@ -188,7 +186,10 @@ ActiveRecord::Schema.define(version: 20160702074915) do
     t.integer  "shipping_address_id"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.integer  "order_id"
   end
+
+  add_index "user_orders", ["order_id"], name: "index_user_orders_on_order_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -218,10 +219,10 @@ ActiveRecord::Schema.define(version: 20160702074915) do
   add_foreign_key "addresses", "users"
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "products"
-  add_foreign_key "payment_gateways", "user_orders"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "used_coupons", "coupons"
   add_foreign_key "used_coupons", "user_orders"
   add_foreign_key "used_coupons", "users"
+  add_foreign_key "user_orders", "orders"
 end

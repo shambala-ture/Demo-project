@@ -1,7 +1,8 @@
 class AddressesController < ApplicationController
   def index
+  
     @addresses=current_user.addresses
-    flash[:notice] = "Select your Shipping or Billing addresses #{params[:output_flash=>"select_address"]}."
+    # flash[:notice] = "Select your Shipping or Billing addresses #{params[:output_flash=>"select_address"]}."
   end
   
   def new
@@ -13,6 +14,7 @@ class AddressesController < ApplicationController
   end
 
   def create
+
     @address = Address.new(address_params)
     @address.user=current_user
     if @address.save

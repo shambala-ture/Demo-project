@@ -57,7 +57,6 @@ class CartsController < ApplicationController
     if Coupon.exists?(:code => params[:coupon])
       valid = true
       @coupon = Coupon.find_by(:code => params[:coupon])
-      # @message = "Code Valid"
       @message = "#{@coupon.code} applied"
       @percent = @coupon.discount_of / 100
       @intermediate_total = @total * @percent
