@@ -1,11 +1,10 @@
 class OrdersController < ApplicationController
   before_filter :set_cart_quantity_price
-  
-  def new
-    @order = Order.new
+  def index
+    @user_order = UserOrder.where(user_id:current_user.id).first
+    @order_details = @user_order.order.order_details
   end
-
-  def show
+  def new
     @order = Order.new
   end
 
@@ -22,6 +21,6 @@ class OrdersController < ApplicationController
     if @coupon_code
       @used_coupon = UsedCoupon.create(user:current_user,coupon_id:@coupon_code,user_order_id:@user_order.id)
     end
-    redirect_to root_path
+    redirect_to orders_path
   end
 end
