@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+ 
+
   def index
   
     @addresses=current_user.addresses
@@ -44,6 +46,6 @@ class AddressesController < ApplicationController
 
   private
   def address_params
-    params.require(:address).permit!
+    params.require(:address).permit(:name, :address_1, :address_2, :city, :country, :state, :zipcode)
   end
 end

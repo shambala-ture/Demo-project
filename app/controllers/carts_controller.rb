@@ -71,6 +71,7 @@ class CartsController < ApplicationController
 
   def remove_coupon
     session[:coupon] = ""
+    flash[:notice] = "Coupon was removed successfully."
     redirect_to user_carts_checkout_path
     
   end

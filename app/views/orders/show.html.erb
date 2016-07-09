@@ -45,8 +45,9 @@
     <hr>
     <div class="container">
       <div class="col-sm-6">
-          <div class="panel panel-default">  
-            <div class="panel-heading"><%= @user_order.billing_address.name %></div>   
+          <div class="panel panel-default"> 
+            <div class="panel-heading"> Billing Address </div> 
+            <div class="panel-body"><%= @user_order.billing_address.name %></div>   
             <div class="panel-body"><%= @user_order.billing_address.address_1 %></div>
             <div class="panel-body"><%= @user_order.billing_address.address_2 %></div>
             <div class="panel-body"><%= @user_order.billing_address.city %></div>
@@ -57,7 +58,8 @@
       </div>
       <div class="col-sm-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><%= @user_order.shipping_address.name %></div>    
+          <div class="panel-heading"> Shipping Address </div>
+          <div class="panel-body"><%= @user_order.shipping_address.name %></div>    
           <div class="panel-body"><%= @user_order.shipping_address.address_1 %></div>
           <div class="panel-body"><%= @user_order.shipping_address.address_2 %></div>
           <div class="panel-body"><%= @user_order.shipping_address.city %></div>
@@ -81,11 +83,11 @@
       <div class="col-sm-6">
         <div class ="pull-right">
           <p>Total amount is: </p> 
-          <%= @total %>          
+          <%= @user_order.total_amount %>          
         </div>
       </div>
       <div class ="pull-right">
-          <%= link_to "Payment", root_path ,:output_flash=>"select_address", :class => "btn btn-default check_out"%>
+          <%= link_to "Payment", new_charge_path ,:output_flash=>"select_address", :class => "btn btn-default check_out"%>
       </div>
   </div>
 </section> <!--/#cart_items-->

@@ -60,7 +60,7 @@
             <div class="shop-menu pull-right">
               <ul class="nav navbar-nav">
                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+                <li><%= link_to '<i class="fa fa-star"></i>Wishlist'.html_safe, userwishlists_path %></li>
                 <li><%= link_to '<i class="fa fa-crosshairs"></i>Checkout'.html_safe,user_carts_checkout_path %></li>
                 <li><%= link_to '<i class="fa fa-shopping-cart"></i>Cart' "<span id='add_to_cart'>(#{(session[:product_id].count)})</span>".html_safe,user_carts_path %></li>
                 
@@ -109,8 +109,7 @@
                                         <li><a href="#">Blog List</a></li>
                     <li><a href="#">Blog Single</a></li>
                                     </ul>
-                                </li> 
-                <li><a href="#">404</a></li>
+                                </li>
                 <li><a href="#">Contact</a></li>
               </ul>
             </div>

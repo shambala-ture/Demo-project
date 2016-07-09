@@ -22,6 +22,8 @@ gem 'devise'
 
 gem 'omniauth-facebook'
 
+gem 'stripe'
+
 gem "paperclip"
 
 gem 'will_paginate'

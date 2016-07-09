@@ -37,12 +37,6 @@ class OrdersController < ApplicationController
         @user_order.total_amount = @total
         @user_order.coupon_id = @coupon_code
         @user_order.save
-      # else
-      #   @billing_address = Address.find(params[:billingaddress])
-      #   @shipping_address = Address.find(params[:shippingaddress])
-      #   @coupon_code = session[:coupon].present? ? session[:coupon]["id"] : nil    
-
-      #   @user_order = UserOrder.create(order:@order, billing_address:@billing_address, shipping_address:@shipping_address, user:current_user, total_amount:@total, coupon_id:@coupon_code)
       end
 
 
@@ -50,23 +44,25 @@ class OrdersController < ApplicationController
         @used_coupon = UsedCoupon.find_by(user_order_id:@user_order.id)
         @used_coupon.coupon_id = @coupon_code
         @used_coupon.save
-      # else
-      #   @used_coupon = UsedCoupon.create(user:current_user,coupon_id:@coupon_code,user_order_id:@user_order.id)
       end
 
     else
 
       @order = Order.create
-      
       @cart_products.each do |k,v|
       @order_detail = OrderDetail.create(quantity:v[:quantity], amount:v[:total_price], product:k, order:@order)
       end
 
       @billing_address = Address.find(params[:billingaddress])
       @shipping_address = Address.find(params[:shippingaddress])
-      @coupon_code = session[:coupon].present? ? session[:coupon]["id"] : nil    
-
-      @user_order = UserOrder.create(order:@order, billing_address:@billing_address, shipping_address:@shipping_address, user:current_user, total_amount:@total, coupon_id:@coupon_code)
+      @coupon_code = session[:coupon].present? ? session[:coupon]["id"] : nil
+      @coupon =Coupon.find_by_id(@coupon_code)  
+      if @coupon   
+        @final_total=@order.total_price(@coupon,@total)
+      else
+        @final_total=@total
+      end
+      @user_order = UserOrder.create(order:@order, billing_address:@billing_address, shipping_address:@shipping_address, user:current_user, total_amount:@final_total, coupon_id:@coupon_code)
 
       session[:order_id] = @order.id
       
