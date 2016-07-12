@@ -17,13 +17,13 @@
           <div class="overlay-content">
             <h2><%= product.price %></h2>
             <p><%= product.name %></p>
-            <%= link_to '<i class="fa fa-shopping-cart"></i>Add to Cart'.html_safe, new_cart_path(:product_id => product), :class =>"btn btn-default add-to-cart",remote:true, method: :get%>
+            <%= link_to '<i class="fa fa-shopping-cart"></i>Add to Cart'.html_safe, new_cart_path(:product_id => product), :class =>"btn btn-default add-to-cart", remote:true, method: :get%>
           </div>
         </div>
     </div>
     <div class="choose">
       <ul class="nav nav-pills nav-justified">
-        <li><%= link_to '<i class="fa fa-plus-square"></i>Add to wishlist'.html_safe, root_path %></li>
+        <li><%= link_to '<i class="fa fa-plus-square"></i>Add to wishlist'.html_safe, new_userwishlist_path(:product_id => product) %></li>
         <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
       </ul>
     </div>

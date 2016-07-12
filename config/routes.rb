@@ -29,7 +29,12 @@ Rails.application.routes.draw do
 
   resources :charges
 
+ # get 'userwishlists/product_wishlist', to: 'userwishlists#product_wishlist'
+ 
  resources :userwishlists
+
+
+ # delete 'userwishlists/remove_product_wishlist', to: 'userwishlists#remove_product_wishlist'
 
   # get '/userwishlists/show', to: 'userwishlists#show'
   # get '/addresses_new', to: 'addresses#new'

@@ -1,47 +1,50 @@
 <section id="cart_items">
-    <div class="container">
-      <div class="breadcrumbs">
-        <ol class="breadcrumb">
-          <li><a href="#">Home</a></li>
-          <li class="active">Wish List</li>
-        </ol>
-      </div>
-      <div class="table-responsive cart_info">
-        <table class="table table-condensed">
-          <thead>
-            <tr class="cart_menu">
-              <td class="image">Item</td>
-              <td class="description"></td>
-              <td class="price">Price</td>          
-              <td></td>
-            </tr>
-          </thead>
-          <tbody>
-             <% @products.each do |product| %>
-            <tr>
-              <td class="cart_product">
-                <a href="#">
-                  <% if product.product_images.count > 0 %>
-                    <%= image_tag(product.product_images.first.image.url) %>
-                  <% else %>
-                    <%= image_tag("home/missing.jpg", alt: "") %>
-                  <% end %></a>
-              </td>
-              <td class="product_description">
-                <h4><%= product.name %></h4>
-                <p>Web ID: 1089772</p>
-              </td>
-              <td class="product_price">
-                <p><%= product.price %></p>
-              </td>              
-              <td class="cart_delete">
-                <%= link_to '<i class="fa fa-times"></i>'.html_safe, userwishlists_path(:product_id=>product),
-              data: { confirm: 'Are you sure?' }, method: :delete,:class=>"cart_quantity_delete"%>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+  <div class="container">
+    <div class="breadcrumbs">
+      <ol class="breadcrumb">
+        <li><%= link_to 'Home', root_path %></li>
+        <li class="active">Wish List</li>
+      </ol>
     </div>
-  </section>
+    <div class="table-responsive cart_info">
+      <table class="table table-condensed">
+        <thead>
+          <tr class="cart_menu">
+            <td class="image">Item</td>
+            <td class="description">Product</td>
+            <td class="price">Price</td>
+            <td>Remove</td>
+            <td></td>
+          </tr>
+        </thead>
+      <tbody>
+        <% @userwishlists.each do |userwishlist| %>
+        <tr>
+          <td class="cart_product">
+              <a href="#">
+                <% if userwishlist.product.product_images.count > 0 %>
+                  <%= image_tag(userwishlist.product.product_images.first.image.url) %>
+                <% else %>
+                  <%= image_tag("home/missing.jpg", alt: "") %>
+                <% end %></a>
+            </td>
+          <td class="product_description">
+              <h4><%= userwishlist.product.name %></h4>
+              <p>Web ID: 1089772</p>
+          </td>
+          <td class="product_price">
+            <p><%= userwishlist.product.price %></p>
+          </td> 
+          <td class="cart_delete">
+            <%= link_to '<i class="fa fa-times"></i>'.html_safe, userwishlist_path(userwishlist),  method: :delete, data: { confirm: 'Are you sure?' },:class=>"cart_quantity_delete"%>
+          </td>
+          <td>
+            <%= link_to "Add to cart", user_carts_checkout_path , :class => "btn btn-default check_out"%>
+          </td>
+        </tr>   
+        <% end %>
+      </tbody>         
+      </table>      
+    </div>
+  </div>
+</section>
