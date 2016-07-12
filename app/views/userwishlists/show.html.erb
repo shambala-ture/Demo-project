@@ -19,31 +19,29 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+             <% @uniq_prods.each do |product| %>
+            <tr id="product_<%= product.id %>">
               <td class="cart_product">
-                <a href=""><img src="home/one.png" alt=""></a>
+                <a href="#">
+                  <% if product.product_images.count > 0 %>
+                    <%= image_tag(product.product_images.first.image.url) %>
+                  <% else %>
+                    <%= image_tag("home/missing.jpg", alt: "") %>
+                  <% end %></a>
               </td>
-              <td class="cart_description">
-                <h4><a href="">Colorblock Scuba</a></h4>
+              <td class="product_description">
+                <h4><%= product.name %></h4>
                 <p>Web ID: 1089772</p>
               </td>
-              <td class="cart_price">
-                <p>$59</p>
-              </td>
-              <td class="cart_quantity">
-                <div class="cart_quantity_button">
-                  <a class="cart_quantity_up" href=""> + </a>
-                  <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                  <a class="cart_quantity_down" href=""> - </a>
-                </div>
-              </td>
-              <td class="cart_total">
-                <p class="cart_total_price">$59</p>
-              </td>
+              <td class="product_price">
+                <p><%= product.price %></p>
+              </td>              
               <td class="cart_delete">
-                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                <%= link_to '<i class="fa fa-times"></i>'.html_safe, userwishlists_path(:product_id=>product),
+              data: { confirm: 'Are you sure?' }, method: :delete,:class=>"cart_quantity_delete"%>
               </td>
             </tr>
+            <% end %>
           </tbody>
         </table>
       </div>

@@ -1,11 +1,11 @@
 class UserwishlistsController < ApplicationController
 
   def index
-   
-  end   
+    # set_cart_quantity_price
+   @products = Product.find(params[:product_id])
 
-  def show
-     
-  end 
+  end
+
+ 
 
 end

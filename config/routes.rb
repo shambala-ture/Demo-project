@@ -29,9 +29,9 @@ Rails.application.routes.draw do
 
   resources :charges
 
-  resources :userwishlists
+ resources :userwishlists
 
-  # get '/addresses', to: 'addresses#index'
+  # get '/userwishlists/show', to: 'userwishlists#show'
   # get '/addresses_new', to: 'addresses#new'
   post '/user_carts/apply_coupon', to: 'carts#apply_coupon'
 

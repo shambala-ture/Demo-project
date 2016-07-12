@@ -60,7 +60,7 @@
             <div class="shop-menu pull-right">
               <ul class="nav navbar-nav">
                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                <li><%= link_to '<i class="fa fa-star"></i>Wishlist'.html_safe, userwishlists_path %></li>
+                <li><%= link_to '<i class="fa fa-star"></i>Wishlist'.html_safe, userwishlists_path(:product_id => session[:product_id])%></li>
                 <li><%= link_to '<i class="fa fa-crosshairs"></i>Checkout'.html_safe,user_carts_checkout_path %></li>
                 <li><%= link_to '<i class="fa fa-shopping-cart"></i>Cart' "<span id='add_to_cart'>(#{(session[:product_id].count)})</span>".html_safe,user_carts_path %></li>
                 

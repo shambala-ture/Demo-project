@@ -87,7 +87,7 @@
         </div>
       </div>
       <div class ="pull-right">
-          <%= link_to "Payment", new_charge_path ,:output_flash=>"select_address", :class => "btn btn-default check_out"%>
+          <%= link_to "Payment", new_charge_path(:user_order =>@user_order) , :class => "btn btn-default check_out"%>
       </div>
   </div>
 </section> <!--/#cart_items-->
