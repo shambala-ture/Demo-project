@@ -2,7 +2,6 @@
   <div class="product-image-wrapper">
     <div class="single-products">
         <div class="productinfo text-center">
-          <%#= binding.pry %>
           <% if product.product_images.count > 0 %>
             <%= image_tag(product.product_images.first.image.url) %>
           <% else %>
