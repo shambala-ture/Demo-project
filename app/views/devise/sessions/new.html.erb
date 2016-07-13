@@ -4,7 +4,7 @@
         <div class="col-sm-4 col-sm-offset-1">
           <div class="login-form"><!--login form-->
             <h2>Login to your account</h2>
-            <%= form_for(:user, :url => session_path(:user)) do |f| %>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <form action="#">
               <%= f.label :email %><br />
               <%= f.email_field :email, autofocus: true %>
@@ -25,7 +25,7 @@
         <div class="col-sm-4">
           <div class="signup-form"><!--sign up form-->
             <h2>New User Signup!</h2>
-            <%= form_for(:user, :url => session_path(:user)) do |f| %>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <%#= devise_error_messages! %>
             <form action="#">
             <%= f.label :email %><br />

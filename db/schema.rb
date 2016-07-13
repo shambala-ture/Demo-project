@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709102121) do
+ActiveRecord::Schema.define(version: 20160713072209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,9 +167,11 @@ ActiveRecord::Schema.define(version: 20160709102121) do
     t.integer  "user_order_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "order_id"
   end
 
   add_index "used_coupons", ["coupon_id"], name: "index_used_coupons_on_coupon_id", using: :btree
+  add_index "used_coupons", ["order_id"], name: "index_used_coupons_on_order_id", using: :btree
   add_index "used_coupons", ["user_id"], name: "index_used_coupons_on_user_id", using: :btree
   add_index "used_coupons", ["user_order_id"], name: "index_used_coupons_on_user_order_id", using: :btree
 
@@ -232,6 +234,7 @@ ActiveRecord::Schema.define(version: 20160709102121) do
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "used_coupons", "coupons"
+  add_foreign_key "used_coupons", "orders"
   add_foreign_key "used_coupons", "user_orders"
   add_foreign_key "used_coupons", "users"
   add_foreign_key "user_orders", "orders"

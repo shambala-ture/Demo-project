@@ -14,7 +14,6 @@ class UserwishlistsController < ApplicationController
     redirect_to root_path
   end
 
-
   def destroy
     @userwishlist = UserWishList.find(params[:id])
     @userwishlist.delete

@@ -46,6 +46,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
   config.action_mailer.default_url_options = { :host => 'http://10.0.100.107', :port => 3000 }
   config.consider_all_requests_local = false
+  
   # config.assets.css_compressor = :yui
   # config.assets.css_compressor = :sass
   # config.assets.js_compressor = :uglifier

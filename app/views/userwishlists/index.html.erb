@@ -39,7 +39,7 @@
             <%= link_to '<i class="fa fa-times"></i>'.html_safe, userwishlist_path(userwishlist),  method: :delete, data: { confirm: 'Are you sure?' },:class=>"cart_quantity_delete"%>
           </td>
           <td>
-            <%= link_to "Add to cart", user_carts_checkout_path , :class => "btn btn-default check_out"%>
+            <%= link_to "Add to cart", userwishlists_path , :class => "btn btn-default check_out"%>
           </td>
         </tr>   
         <% end %>
