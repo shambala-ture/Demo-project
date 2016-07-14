@@ -6,8 +6,8 @@ class CartsController < ApplicationController
   end
 
   def new
-    session[:product_id] << params["product_id"]
     flash[:notice] = "Product was successfully added."
+    session[:product_id] << params["product_id"]
     # redirect_to root_path
   end
 

@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
       if @user_order
         @billing_address = Address.find(params[:billingaddress])
         @shipping_address = Address.find(params[:shippingaddress])
-        @coupon_code = session[:coupon].present? ? session[:coupon]["id"] : nil    
+        @coupon_code = session[:coupon].present? ? session[:coupon]["id"] : nil  
         @user_order.billing_address = @billing_address
         @user_order.shipping_address = @shipping_address
         @user_order.total_amount = @total
@@ -41,6 +41,7 @@ class OrdersController < ApplicationController
 
 
       if @coupon_code
+        binding.pry
         @used_coupon = UsedCoupon.find_by(user_order_id:@user_order.id)
         @used_coupon.coupon_id = @coupon_code
         @used_coupon.save
