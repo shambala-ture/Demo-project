@@ -41,7 +41,6 @@ class OrdersController < ApplicationController
 
 
       if @coupon_code
-        binding.pry
         @used_coupon = UsedCoupon.find_by(user_order_id:@user_order.id)
         @used_coupon.coupon_id = @coupon_code
         @used_coupon.save
