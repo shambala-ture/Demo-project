@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713072209) do
+ActiveRecord::Schema.define(version: 20160716091152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(version: 20160713072209) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contact_us", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "contact_us"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "coupons", force: :cascade do |t|
     t.string   "code"
     t.integer  "create_by_id"
@@ -103,8 +112,18 @@ ActiveRecord::Schema.define(version: 20160713072209) do
   add_index "order_details", ["product_id"], name: "index_order_details_on_product_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "shipping_charges",    precision: 12, scale: 2
+    t.integer  "payment_gateway_id"
+    t.string   "status",                                       default: "pending"
+    t.decimal  "total_amount",        precision: 12, scale: 2
+    t.integer  "user_id"
+    t.integer  "coupon_id"
+    t.integer  "shipping_method"
+    t.string   "transaction_id"
+    t.integer  "billing_address_id"
+    t.integer  "shipping_address_id"
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
   end
 
   create_table "payment_gateways", force: :cascade do |t|
@@ -164,34 +183,14 @@ ActiveRecord::Schema.define(version: 20160713072209) do
   create_table "used_coupons", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "coupon_id"
-    t.integer  "user_order_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "order_id"
   end
 
   add_index "used_coupons", ["coupon_id"], name: "index_used_coupons_on_coupon_id", using: :btree
   add_index "used_coupons", ["order_id"], name: "index_used_coupons_on_order_id", using: :btree
   add_index "used_coupons", ["user_id"], name: "index_used_coupons_on_user_id", using: :btree
-  add_index "used_coupons", ["user_order_id"], name: "index_used_coupons_on_user_order_id", using: :btree
-
-  create_table "user_orders", force: :cascade do |t|
-    t.decimal  "shipping_charges",    precision: 12, scale: 2
-    t.integer  "payment_gateway_id"
-    t.string   "status"
-    t.decimal  "total_amount",        precision: 12, scale: 2
-    t.integer  "user_id"
-    t.integer  "coupon_id"
-    t.integer  "shipping_method"
-    t.string   "transaction_id"
-    t.integer  "billing_address_id"
-    t.integer  "shipping_address_id"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.integer  "order_id"
-  end
-
-  add_index "user_orders", ["order_id"], name: "index_user_orders_on_order_id", using: :btree
 
   create_table "user_wish_lists", force: :cascade do |t|
     t.integer  "product_id"
@@ -229,15 +228,11 @@ ActiveRecord::Schema.define(version: 20160713072209) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "addresses", "users"
-  add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "products"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "used_coupons", "coupons"
-  add_foreign_key "used_coupons", "orders"
-  add_foreign_key "used_coupons", "user_orders"
   add_foreign_key "used_coupons", "users"
-  add_foreign_key "user_orders", "orders"
   add_foreign_key "user_wish_lists", "products"
   add_foreign_key "user_wish_lists", "users"
 end

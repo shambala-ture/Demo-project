@@ -11,7 +11,7 @@
           <span>Amount: <%= @order.total_amount %></span>
         </label>
       </article>
-
+      <%= hidden_field_tag :user_order, params[:user_order] %>
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="Order Payment"

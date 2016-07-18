@@ -4,5 +4,5 @@ Rails.configuration.stripe = {
 }
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
-# Stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
-# STRIPE_PUBLIC_KEY = "pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+# Stripe.api_key = "sk_test_Rkw9g6DPkSGyTyT0V5fWVwr5"
+# STRIPE_PUBLIC_KEY = "pk_test_BROvuDkH1LvfDKvofOg4aixy"

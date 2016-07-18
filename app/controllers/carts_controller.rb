@@ -73,7 +73,7 @@ class CartsController < ApplicationController
     session[:coupon] = ""
     flash[:notice] = "Coupon was removed successfully."
     redirect_to user_carts_checkout_path
-    
+     
   end
 
 end

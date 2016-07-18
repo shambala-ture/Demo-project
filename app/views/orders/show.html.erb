@@ -3,7 +3,7 @@
     <div class="breadcrumbs">
       <ol class="breadcrumb">
         <li><%= link_to 'Home', root_path %></li>
-        <li class="active">Order Details</li>
+        <li class="active">Order</li>
       </ol>
     </div>
     <div class="table-responsive cart_info">
@@ -47,25 +47,33 @@
       <div class="col-sm-6">
           <div class="panel panel-default"> 
             <div class="panel-heading"> Billing Address </div> 
-            <div class="panel-body"><%= @user_order.billing_address.name %></div>   
-            <div class="panel-body"><%= @user_order.billing_address.address_1 %></div>
-            <div class="panel-body"><%= @user_order.billing_address.address_2 %></div>
-            <div class="panel-body"><%= @user_order.billing_address.city %></div>
-            <div class="panel-body"><%= @user_order.billing_address.country %></div>
-            <div class="panel-body"><%= @user_order.billing_address.state %></div>
-            <div class="panel-body"><%= @user_order.billing_address.zipcode %></div>
+            <% if @order.billing_address.present? %>
+              <div class="panel-body"><%= @order.billing_address.name %></div>   
+              <div class="panel-body"><%= @order.billing_address.address_1 %></div>
+              <div class="panel-body"><%= @order.billing_address.address_2 %></div>
+              <div class="panel-body"><%= @order.billing_address.city %></div>
+              <div class="panel-body"><%= @order.billing_address.country %></div>
+              <div class="panel-body"><%= @order.billing_address.state %></div>
+              <div class="panel-body"><%= @order.billing_address.zipcode %></div>
+            <% else %>
+              <%=" Missing billing address" %>
+            <% end %>
           </div>
       </div>
       <div class="col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading"> Shipping Address </div>
-          <div class="panel-body"><%= @user_order.shipping_address.name %></div>    
-          <div class="panel-body"><%= @user_order.shipping_address.address_1 %></div>
-          <div class="panel-body"><%= @user_order.shipping_address.address_2 %></div>
-          <div class="panel-body"><%= @user_order.shipping_address.city %></div>
-          <div class="panel-body"><%= @user_order.shipping_address.country %></div>
-          <div class="panel-body"><%= @user_order.shipping_address.state %></div>
-          <div class="panel-body"><%= @user_order.shipping_address.zipcode %></div>
+          <% if @order.shipping_address.present? %>
+            <div class="panel-body"><%= @order.shipping_address.name %></div>    
+            <div class="panel-body"><%= @order.shipping_address.address_1 %></div>
+            <div class="panel-body"><%= @order.shipping_address.address_2 %></div>
+            <div class="panel-body"><%= @order.shipping_address.city %></div>
+            <div class="panel-body"><%= @order.shipping_address.country %></div>
+            <div class="panel-body"><%= @order.shipping_address.state %></div>
+            <div class="panel-body"><%= @order.shipping_address.zipcode %></div>
+          <% else %>
+            <%= "Missing shipping address" %>
+          <% end %>
         </div>
       </div>
       <%=link_to 'Back', addresses_path %>
@@ -82,11 +90,11 @@
       <div class="col-sm-6">
         <div class ="pull-right">
           <p>Total amount is: </p> 
-          <%= @user_order.total_amount %>          
+          <%= @order.total_amount %>          
         </div>
       </div>
       <div class ="pull-right">
-          <%= link_to "Payment", new_charge_path(:user_order =>@user_order) , :class => "btn btn-default check_out"%>
+          <%= link_to "Payment", new_charge_path(:user_order => @order) , :class => "btn btn-default check_out"%>
       </div>
   </div>
 </section> <!--/#cart_items-->

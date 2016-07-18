@@ -1,0 +1,45 @@
+<section id="cart_items">
+  <div class="container">
+    <div class="breadcrumbs">
+      <ol class="breadcrumb">
+        <li><%= link_to 'Home', root_path %></li>
+        <li class="active">My Orders</li>
+      </ol>
+    </div>
+    <div class="table-responsive cart_info">
+    <div class="pull-right">
+      <%= form_tag(search_orders_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search_id, params[:search_id], placeholder: "Search Id" %>
+        <%= text_field_tag :search_email, params[:search_email], placeholder: "Search Email" %>
+        <%= submit_tag "Search" %>
+      <% end %>
+    </div>
+    </div>
+    <div class="table-responsive cart_info">
+      <% if @orders.count > 0 %>
+        <table class="table table-condensed">
+          <thead>
+            <tr class="cart_menu">
+              <td class="image">Order Id</td>
+              <td class="description">Order Date</td>
+              <td class="quantity">Show</td>
+              <td class="total">Status</td>
+            </tr>
+          </thead>
+          <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.id %></td>
+              <td><%= order.created_at.strftime("%d %b %Y") %></td>
+              <td><%= link_to "Show", order_path(order) %></td>
+              <td><%= order.status %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <%= "Orders not found." %>
+      <% end %>        
+    </div>
+  </div>
+</section>

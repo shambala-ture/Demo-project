@@ -1,16 +1,17 @@
 class ChargesController < ApplicationController
 
   def new
-    @order = UserOrder.find(params[:user_order])
+    @order = Order.find(params[:user_order])
   end
 
   def create
+    @order = Order.find(params[:user_order])
     # Amount in cents
-    @amount = 500 
+    @amount = @order.total_amount.to_i
     begin
       customer = Stripe::Customer.create(
-      :email => params[:stripeEmail],
-      :source  => params[:stripeToken]
+        :email => params[:stripeEmail],
+        :source  => params[:stripeToken]
       )
 
       charge = Stripe::Charge.create(
@@ -18,10 +19,11 @@ class ChargesController < ApplicationController
         :amount      => @amount,
         :description => 'Rails Stripe customer',
         :currency    => 'usd'
-        )
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to new_charge_path
+      )
+      @order.update(:status => "completed")
+      rescue Stripe::CardError => e
+        flash[:error] = e.message
+        redirect_to new_charge_path
     end
       session[:product_id] = []
       session[:coupon_id] = []

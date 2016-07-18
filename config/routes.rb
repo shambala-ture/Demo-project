@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'order_details/index'
+
   get 'orders/index'
 
   get 'addresses/index'
@@ -23,7 +25,14 @@ Rails.application.routes.draw do
 
   resources :carts
 
-  resources :orders
+  resources :orders do
+    collection do
+      get 'search'
+    end
+  end
+
+  # get 'orders/search', to: 'orders#search'
+
   # get '/payment', to: 'orders#show', as: 'payment'
   resources :addresses
 
