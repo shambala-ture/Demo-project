@@ -3,7 +3,9 @@
     <div class="single-products">
         <div class="productinfo text-center">
           <% if product.product_images.count > 0 %>
-            <%= image_tag(product.product_images.first.image.url) %>
+            <%= link_to product_path(product.id) do %>
+              <%= image_tag(product.product_images.first.image.url) %>
+            <% end %>
           <% else %>
             <%= image_tag("home/missing.jpg", alt: "") %>
           <% end %>
@@ -12,6 +14,7 @@
           <%= link_to '<i class="fa fa-shopping-cart"></i>Add to Cart'.html_safe, new_cart_path(:product_id => product), :class =>"btn btn-default add-to-cart", remote:true, method: :get %>
           <!-- <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> -->
         </div>
+        <%= link_to product_path(product.id) do %>
         <div class="product-overlay">
           <div class="overlay-content">
             <h2><%= product.price %></h2>
@@ -19,6 +22,7 @@
             <%= link_to '<i class="fa fa-shopping-cart"></i>Add to Cart'.html_safe, new_cart_path(:product_id => product), :class =>"btn btn-default add-to-cart", remote:true, method: :get%>
           </div>
         </div>
+        <% end %>
     </div>
     <div class="choose">
       <ul class="nav nav-pills nav-justified">
