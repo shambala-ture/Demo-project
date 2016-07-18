@@ -8,7 +8,7 @@
           </div>
         <% end %>
         <label class="amount">
-          <span>Amount: <%= @order.total_amount %></span>
+          <span>Amount: Rs.<%= @order.total_amount %></span>
         </label>
       </article>
       <%= hidden_field_tag :user_order, params[:user_order] %>

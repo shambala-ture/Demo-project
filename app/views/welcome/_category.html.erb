@@ -3,12 +3,12 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name %>" class="collapsed">
+          <p data-toggle="collapse" data-parent="#accordian" href="#<%= category.name %>" class="collapsed">
             <% if !category.subcategories.blank? %>
             <span class="badge pull-right"><i class="fa fa-plus"></i></span>
             <% end %>
             <%= link_to category.name, category_path(id: category) %>
-          </a>
+          </p>
         </h4>
       </div>
       <% if !category.subcategories.blank? %>
