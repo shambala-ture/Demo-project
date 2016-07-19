@@ -7,8 +7,9 @@ Rails.application.routes.draw do
 
   get 'addresses/index'
 
-  devise_for :users
+  devise_for :users,:controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount RailsAdmin::Engine => '/administrator', as: 'rails_admin'
+
   get 'welcome/index'
 
   devise_for :admins

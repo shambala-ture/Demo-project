@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716091152) do
+ActiveRecord::Schema.define(version: 20160719115543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,16 @@ ActiveRecord::Schema.define(version: 20160716091152) do
     t.datetime "updated_at",                             null: false
   end
 
+  create_table "identities", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
   create_table "order_details", force: :cascade do |t|
     t.integer  "quantity"
     t.decimal  "amount",     precision: 12, scale: 2
@@ -178,6 +188,7 @@ ActiveRecord::Schema.define(version: 20160716091152) do
     t.boolean  "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "quantity"
   end
 
   create_table "used_coupons", force: :cascade do |t|
@@ -228,6 +239,7 @@ ActiveRecord::Schema.define(version: 20160716091152) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "identities", "users"
   add_foreign_key "order_details", "products"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"

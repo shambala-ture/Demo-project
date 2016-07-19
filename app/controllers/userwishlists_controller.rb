@@ -11,12 +11,15 @@ class UserwishlistsController < ApplicationController
   def new
     @product = Product.find(params[:product_id])
     UserWishList.find_or_create_by(:user => current_user, :product => @product)
+    flash[:notice] = "Product was successfully added."
     redirect_to root_path
   end
 
   def destroy
     @userwishlist = UserWishList.find(params[:id])
     @userwishlist.delete
+    flash[:notice] = "Product was successfully removed."
+    flash[:notice] = "Wishlist is empty."
     redirect_to userwishlists_path
   end
 end

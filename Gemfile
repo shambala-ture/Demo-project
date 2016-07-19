@@ -22,6 +22,8 @@ gem 'devise'
 
 gem 'omniauth-facebook'
 
+gem 'omniauth-twitter'
+
 gem 'stripe'
 
 gem "paperclip"
