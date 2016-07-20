@@ -24,6 +24,8 @@ gem 'omniauth-facebook'
 
 gem 'omniauth-twitter'
 
+gem 'ckeditor'
+
 gem 'stripe'
 
 gem "paperclip"

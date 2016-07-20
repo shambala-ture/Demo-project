@@ -11,12 +11,15 @@ class User < ActiveRecord::Base
   has_many :user_wish_lists
 
   def self.from_omniauth(auth)
-    Identity.joins(:user).where(provider: auth.provider, uid: auth.uid).where(users: {email: auth.info.email }).first_or_create do |identity|
-      user = identity.user
+    identity = Identity.joins(:user).where(provider: auth.provider, uid: auth.uid).where(users: {email: auth.info.email }).first_or_create
+    user = identity.user
+    unless user
+      user = User.new
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      # user.name = auth.info.name   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
+      user.save
+      identity.update(user: user)
     end
+    user
   end
 end

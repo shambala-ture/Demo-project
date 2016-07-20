@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contacts/new'
+
   get 'products/show'
 
   get 'order_details/index'
@@ -23,6 +25,8 @@ Rails.application.routes.draw do
   resources :products
 
   resources :banners
+
+  resources :contacts
 
   resources :categories do 
     resources :subcategories
