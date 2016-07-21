@@ -62,8 +62,12 @@
                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
 
                 <li><%= link_to '<i class="fa fa-star"></i>Wishlist'.html_safe, userwishlists_path %></li>
-
+                
+                <% if session[:product_id].present? %>
                 <li><%= link_to '<i class="fa fa-crosshairs"></i>Checkout'.html_safe,user_carts_checkout_path %></li>
+                <% else %>
+                <li><%= link_to '<i class="fa fa-crosshairs"></i>Checkout'.html_safe,user_carts_checkout_path %></li>
+                <% end %>
 
                 <li><%= link_to '<i class="fa fa-shopping-cart"></i>Cart' "<span id='add_to_cart'>(#{(session[:product_id].count)})</span>".html_safe,user_carts_path %></li>
 
@@ -100,20 +104,20 @@
               <ul class="nav navbar-nav collapse navbar-collapse">
                 <li><%= link_to "Home",root_path,:class=>"active" %></li>
                 <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="#">Products</a></li>
+                  <ul role="menu" class="sub-menu">
+                    <li><a href="#">Products</a></li>
                     <li><a href="#">Product Details</a></li> 
                     <li><a href="#">Checkout</a></li> 
                     <li><%= link_to 'Cart' "(#{(session[:product_id].count)})".html_safe,user_carts_path%></li> 
                     <li><%= link_to 'Login'.html_safe, login_path, :class => 'navbar-link'%></li> 
-                                    </ul>
-                                </li> 
-                <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
+                  </ul>
+                </li> 
+                <li class="dropdown"><%= link_to 'Blog', blogs_path%>
+                                   <!--  <ul role="menu" class="sub-menu">
                                         <li><a href="#">Blog List</a></li>
                     <li><a href="#">Blog Single</a></li>
-                                    </ul>
-                                </li>
+                                    </ul> -->
+                </li>
                 <li><%= link_to 'Contact', contacts_new_path%></li>
               </ul>
             </div>

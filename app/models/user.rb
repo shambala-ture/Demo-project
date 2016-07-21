@@ -11,15 +11,17 @@ class User < ActiveRecord::Base
   has_many :user_wish_lists
 
   def self.from_omniauth(auth)
-    identity = Identity.joins(:user).where(provider: auth.provider, uid: auth.uid).where(users: {email: auth.info.email }).first_or_create
-    user = identity.user
+    identity = Identity.where(provider: auth.provider, uid: auth.uid).first_or_create
+    email = auth.info.email.present? ? auth.info.email : "#{auth.uid}@twitter.com"
+    user = User.where(email: email).first
     unless user
       user = User.new
-      user.email = auth.info.email
+      user.email = email
       user.password = Devise.friendly_token[0,20]
+      user.skip_confirmation!
       user.save
-      identity.update(user: user)
     end
+    identity.update(user_id: user.id)
     user
   end
 end

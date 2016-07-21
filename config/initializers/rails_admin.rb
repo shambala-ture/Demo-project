@@ -1,5 +1,26 @@
 RailsAdmin.config do |config|
-
+  config.model Blog do
+    edit do
+      # For RailsAdmin >= 0.5.0
+      field :description, :ck_editor
+      field :name
+      field :image
+      # For RailsAdmin < 0.5.0
+      # field :description do
+      #   ckeditor true
+      # end
+    end
+    list do
+      field :description do
+      pretty_value do
+        value.html_safe
+      end
+    end
+      field :name
+      field :image
+    end
+    
+  end
   ### Popular gems integration
 
   ## == Devise ==

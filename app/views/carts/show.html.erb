@@ -59,7 +59,11 @@
         </table>
          <div class ="pull-right">
           <%#= link_to "Update",  user_carts_checkout_path, :class => "btn btn-default check_out"%>
+          <% if session[:product_id].present? %>
           <%= link_to "Check Out", user_carts_checkout_path , :class => "btn btn-default check_out"%>
+          <% else %>
+          <%= link_to "Check Out", user_carts_path , :class => "btn btn-default check_out" %>
+          <% end%>
         </div>
       </div>
     </div>
