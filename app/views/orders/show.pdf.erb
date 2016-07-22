@@ -5,7 +5,7 @@
         <li><%= link_to 'Home', root_path %></li>
         <li class="active">Order</li>
         <div class ="pull-right">
-          <%= link_to "Download me as a PDF", order_path(:id => @order, :format => "pdf") %>
+          <%= link_to "Download PDF", order_path(:id => @order, :format => "pdf") %>
         </div>
       </ol>
     </div>

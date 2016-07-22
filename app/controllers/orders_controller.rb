@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_filter :set_cart_quantity_price
-  
   def index
     @orders = current_user.orders
   end
@@ -19,6 +18,14 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     #@user_order = UserOrder.where(order_id: params[:id]).first
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name",  :template => 'orders/show.pdf.erb',# Excluding ".pdf" extension.
+               disposition: 'attachment',
+               layout: "wicked_pdf"
+      end
+    end
   end
 
   def new

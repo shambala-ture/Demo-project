@@ -25,7 +25,7 @@
         <div class="col-sm-4">
           <div class="signup-form"><!--sign up form-->
             <h2>New User Signup!</h2>
-            <%= form_for(:user, :url => session_path(:user)) do |f| %>
+            <%= form_for(:user, :url => registration_path(:user)) do |f| %>
             <%#= devise_error_messages! %>
             <form action="#">
             <%= f.label :email %><br />

@@ -26,6 +26,12 @@ gem 'omniauth-twitter'
 
 gem 'ckeditor'
 
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'
+
+ gem 'wkhtmltopdf-binary-edge'
+
 gem 'stripe'
 
 gem "paperclip"

@@ -12,10 +12,10 @@ RailsAdmin.config do |config|
     end
     list do
       field :description do
-      pretty_value do
-        value.html_safe
+        pretty_value do
+          value.html_safe
+        end
       end
-    end
       field :name
       field :image
     end
