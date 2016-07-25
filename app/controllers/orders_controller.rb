@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "file_name",  :template => 'orders/show.pdf.erb',# Excluding ".pdf" extension.
+        render pdf: "File_name",  :template => 'orders/show.pdf.erb',# Excluding ".pdf" extension.
                disposition: 'attachment',
                layout: "wicked_pdf"
       end

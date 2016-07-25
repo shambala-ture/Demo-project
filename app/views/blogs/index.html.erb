@@ -15,7 +15,7 @@
           <h2 class="title text-center">Latest From our Blog</h2>
           <% @blogs.each do |blog|%>
           <div class="single-blog-post">
-            <h3>blog.name</h3>
+            <h3><%=blog.name%></h3>
             <div class="post-meta">
               <ul>
                 <li><i class="fa fa-user"></i> Mac Doe</li>
@@ -34,7 +34,7 @@
               <%= image_tag blog.image.url %>
             </a>      
             <p><%= blog.description.html_safe %></p>
-            <a  class="btn btn-primary" href="">Read More</a>
+            <!-- <a  class="btn btn-primary" href="">Read More</a> -->
           </div>
           <% end %>
           <div class="pagination-area">

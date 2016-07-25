@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   
   resources :products
 
+  get 'add_to_cart', to:'products#add_to_cart'
+
   resources :banners
 
   resources :blogs
@@ -51,9 +53,14 @@ Rails.application.routes.draw do
 
   resources :charges
 
-  get 'userwishlists/addproduct_from_wishlist', to: 'userwishlists#addproduct_from_wishlist'
+  #get 'add_to_cart', to: 'userwishlists#add_to_cart'
+  
+  #get 'userwishlists/addproduct_from_wishlist', to: 'userwishlists#addproduct_from_wishlist', as: 'userwishlist'
  
-  resources :userwishlists
+  resources :userwishlists do
+    get :add_to_cart, on: :collection
+  end
+
 
 
  # delete 'userwishlists/remove_product_wishlist', to: 'userwishlists#remove_product_wishlist'

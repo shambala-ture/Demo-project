@@ -3,6 +3,18 @@ class UserwishlistsController < ApplicationController
   def index
     @userwishlists = current_user.user_wish_lists
   end
+
+  def add_to_cart
+    @product = Product.find(params[:product_id])
+    session[:product_id] << params["product_id"]
+    set_cart_quantity_price
+      @product = Product.find(params[:product_id])
+      if @cart_products[@product]
+        @total_price = @cart_products[@product][:total_price].to_i
+      end
+      flash[:notice] = "Product was successfully added."
+      redirect_to userwishlists_path
+  end
   
   def show
     
@@ -19,7 +31,7 @@ class UserwishlistsController < ApplicationController
     @userwishlist = UserWishList.find(params[:id])
     @userwishlist.delete
     flash[:notice] = "Product was successfully removed."
-    flash[:notice] = "Wishlist is empty."
     redirect_to userwishlists_path
+    
   end
 end

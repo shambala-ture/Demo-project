@@ -63,11 +63,8 @@
 
                 <li><%= link_to '<i class="fa fa-star"></i>Wishlist'.html_safe, userwishlists_path %></li>
                 
-                <% if session[:product_id].present? %>
-                <li><%= link_to '<i class="fa fa-crosshairs"></i>Checkout'.html_safe,user_carts_checkout_path %></li>
-                <% else %>
-                <li><%= link_to '<i class="fa fa-crosshairs"></i>Checkout'.html_safe,user_carts_checkout_path %></li>
-                <% end %>
+                
+                <li><%= link_to '<i class="fa fa-crosshairs"></i>Checkout'.html_safe,user_carts_checkout_path %></li>          
 
                 <li><%= link_to '<i class="fa fa-shopping-cart"></i>Cart' "<span id='add_to_cart'>(#{(session[:product_id].count)})</span>".html_safe,user_carts_path %></li>
 
