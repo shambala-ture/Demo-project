@@ -8,9 +8,6 @@ class ProductsController < ApplicationController
     session[:product_id] << params["id"]
     set_cart_quantity_price
       @product = Product.find(params[:id])
-      if @cart_products[@product]
-        @total_price = @cart_products[@product][:total_price].to_i
-      end
       flash[:notice] = "Product was successfully added."
       render 'show'
   end

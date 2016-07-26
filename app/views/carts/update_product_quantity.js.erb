@@ -1,6 +1,6 @@
 <% if @cart_products[@product] %>
   $(".product_<%= params[:product_id] %>").val("<%= @count %>");
-  $(".product_total_price_<%= params[:product_id]%>").html("<%= @total_price%>");
+  $(".product_total_price_<%= params[:product_id]%>").html("Rs.<%= @total_price%>");
   $(".alert.alert-info").html("<%= flash[:notice] %>");
   <% else %>
   $("#product_<%= params[:product_id] %>").remove();
@@ -9,4 +9,4 @@
   $("#coupon_and_total").html("<%= escape_javascript(render 'coupon_total') %>");
   $("#discount_total").html("<%= escape_javascript(render 'total') %>");
   $("#coupon_response").html("<%= @message %>");
-  $("#total").text("<%= @total %>")
+  $("#total").text("Rs.<%= @total %>")

@@ -5,7 +5,7 @@
         <li><%= link_to 'Home', root_path %></li>
         <li class="active">Order</li>
         <div class ="pull-right">
-          <%= link_to "Download PDF", order_path(:id => @order, :format => "pdf") %>
+          <%= link_to "Download as PDF", order_path(:id => @order, :format => "pdf") %>
         </div>
       </ol>
     </div>
@@ -34,7 +34,7 @@
               </div>
             </td>
             <td class="cart_total">
-              <p class="cart_total_price"><%= order.amount %></p>
+              <p class="cart_total_price">Rs.<%= order.amount %></p>
             </td>
           </tr>
           <% end %>
