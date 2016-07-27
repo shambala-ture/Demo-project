@@ -23,8 +23,7 @@ class OrdersController < ApplicationController
       format.pdf do
         render pdf: "My_order",  :template => 'orders/show.pdf.erb',# Excluding ".pdf" extension.
                disposition: 'attachment',
-               layout: "wicked_pdf",
-                :header => {:html => {:template => "orders/header.html.erb",layout: "wicked_pdf"}}
+               layout: "wicked_pdf.html.erb"
       end
     end
     UserMailer.email_order(@order).deliver if request.format == "pdf"

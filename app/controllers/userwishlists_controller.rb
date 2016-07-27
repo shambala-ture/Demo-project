@@ -15,10 +15,6 @@ class UserwishlistsController < ApplicationController
       flash[:notice] = "Product was successfully added."
       redirect_to userwishlists_path
   end
-  
-  def show
-    
-  end
 
   def new
     @product = Product.find(params[:product_id])

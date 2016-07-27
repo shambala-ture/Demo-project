@@ -1,8 +1,6 @@
 class ProductsController < ApplicationController
-  def show
-    
+  def show    
     @product = Product.find(params[:id])
-    # flash[:notice] = "Product was successfully added."
   end
   def add_to_cart
     session[:product_id] << params["id"]

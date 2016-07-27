@@ -38,9 +38,8 @@
               <!-- <img src="images/product-details/rating.png" alt=""> -->
               <span>
                 <span>Rs.<%= @product.price%></span>
-                <label>Quantity:</label>
-                <%= @product.quantity%>
-                <input type="text" value="3">
+                <label>Quantity:</label>            
+                <input value=<%= @product.quantity %> >
                 <%= link_to '<i class="fa fa-shopping-cart"></i>Add to Cart'.html_safe, add_to_cart_path(:id => @product), :class =>"btn btn-default add-to-cart"%>
                 <!-- <button type="button" class="btn btn-fefault cart">
                   <i class="fa fa-shopping-cart"></i>

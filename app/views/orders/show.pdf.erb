@@ -1,3 +1,18 @@
+  <div class="header-middle"><!--header-middle-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="logo pull-left">
+              <%= wicked_pdf_image_tag  "home/logo.png", :width => "139px",  :height=>"39px" %>
+            </div>           
+          </div>
+          <div class="col-sm-8">
+            <div class="shop-menu pull-right">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--/header-middle-->
 <section id="cart_items">
   <div class="container">
     <div class="table-responsive cart_info">
@@ -17,7 +32,7 @@
               <p><%= order.order.id %></p>
             </td>
             <td class="cart_description">
-              <h4><a href="#"><%= order.product.description %></a></h4>
+              <h4><%= order.product.description %></h4>
             </td>
             <td class="cart_quantity">
               <div class="cart_quantity_button">

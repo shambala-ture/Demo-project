@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   has_many :product_categories
   has_many :categories, through: :product_categories
   has_many :product_images
-  has_many :orders
+  has_many :order_details
+  has_many :orders, through: :order_details
   has_many :user_wish_lists
 end
