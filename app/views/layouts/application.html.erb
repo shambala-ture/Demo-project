@@ -29,12 +29,12 @@
   </head>
   <body>
     <div id ="cart_count">
-      <%= render 'layouts/header' %>
+      <%= render 'layouts/header.html' %>
     </div>
     <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: "alert alert-info" %>
     <% end %>
     <%= yield %>
-    <%= render 'layouts/footer' %>
+    <%= render 'layouts/footer.html' %>
   </body>
 </html>

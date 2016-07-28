@@ -1,18 +1,15 @@
-  <div class="header-middle"><!--header-middle-->
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="logo pull-left">
-              <%= wicked_pdf_image_tag  "home/logo.png", :width => "139px",  :height=>"39px" %>
-            </div>           
-          </div>
-          <div class="col-sm-8">
-            <div class="shop-menu pull-right">
-            </div>
-          </div>
-        </div>
+<%= wicked_pdf_stylesheet_link_tag "application", media: :all %>
+<div class="header-middle"><!--header-middle-->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="logo pull-left">
+          <%= wicked_pdf_image_tag  "home/logo.png", :width => "139px",  :height=>"39px" %>
+        </div> 
       </div>
-    </div><!--/header-middle-->
+    </div>
+  </div>
+</div><!--/header-middle-->
 <section id="cart_items">
   <div class="container">
     <div class="table-responsive cart_info">
@@ -94,4 +91,31 @@
         </div>
       </div>
   </div>
-</section> <!--/#cart_items-->
+</section> 
+<footer id="footer"><!--Footer-->
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="companyinfo">
+            <h2><span>e</span>-shopper</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="address">
+            <%= wicked_pdf_image_tag("home/map.png", alt:"") %>
+            <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </div>    
+</footer>

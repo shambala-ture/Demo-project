@@ -59,7 +59,8 @@
           <div class="col-sm-8">
             <div class="shop-menu pull-right">
               <ul class="nav navbar-nav">
-                <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+              
+                <li><%= link_to '<i class="fa fa-user"></i>Account'.html_safe, edit_user_registration_path, :class => 'navbar-link'%></li>
 
                 <li><%= link_to '<i class="fa fa-star"></i>Wishlist'.html_safe, userwishlists_path %></li>
                 
@@ -68,16 +69,15 @@
 
                 <li><%= link_to '<i class="fa fa-shopping-cart"></i>Cart' "<span id='add_to_cart'>(#{(session[:product_id].count)})</span>".html_safe,user_carts_path %></li>
 
-                <li><% if user_signed_in? %>Logged in as <strong><%= current_user.email %></strong>.
-                <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
-                <%= link_to 'Addresses', addresses_path, :class => 'navbar-link' %>
-                <%= link_to 'My Order', orders_path, :class => 'navbar-link' %>
-                <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+                <li><% if user_signed_in? %>Logged in as <strong><%= current_user.email %></strong>.</li>
+                <%#= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+                <%#= link_to 'Addresses', addresses_path, :class => 'navbar-link' %>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
                 <% else %>
                 <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %>
                 <li><%= link_to '<i class="fa fa-lock"></i>Login'.html_safe, login_path, :class => 'navbar-link'%></li>
                 <% end %>
-                </li>
+                
               </ul>
             </div>
           </div>
@@ -106,15 +106,18 @@
                     <li><a href="#">Product Details</a></li> 
                     <li><a href="#">Checkout</a></li> 
                     <li><%= link_to 'Cart' "(#{(session[:product_id].count)})".html_safe,user_carts_path%></li> 
-                    <li><%= link_to 'Login'.html_safe, login_path, :class => 'navbar-link'%></li> 
+                    <li><%= link_to 'Login'.html_safe, login_path, :class => 'navbar-link'%>
+                      
+                    </li> 
                   </ul>
                 </li> 
-                <li class="dropdown"><%= link_to 'Blog', blogs_path%>
+                <li><%= link_to 'Blog', blogs_path%>
                                    <!--  <ul role="menu" class="sub-menu">
                                         <li><a href="#">Blog List</a></li>
                     <li><a href="#">Blog Single</a></li>
                                     </ul> -->
                 </li>
+                <li><%= link_to 'My Order', orders_path, :class => 'navbar-link' %></li>
                 <li><%= link_to 'Contact', contacts_new_path%></li>
               </ul>
             </div>

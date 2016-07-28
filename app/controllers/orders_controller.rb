@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :set_cart_quantity_price
   def index
     @orders = current_user.orders
@@ -22,8 +23,17 @@ class OrdersController < ApplicationController
       format.html
       format.pdf do
         render pdf: "My_order",  :template => 'orders/show.pdf.erb',# Excluding ".pdf" extension.
-               disposition: 'attachment',
-               layout: "wicked_pdf.html.erb"
+               disposition: 'attachment'
+               # header: {
+               #  html: {   
+               #    template:'orders/header.html'
+               #  }
+               # },
+               # footer: {
+               #  html: {   
+               #    template:'orders/footer.html'
+               #  }
+               # }
       end
     end
     UserMailer.email_order(@order).deliver if request.format == "pdf"
