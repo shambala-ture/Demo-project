@@ -1,16 +1,18 @@
 class ContactsController < ApplicationController
+  
   def new
     @contact = Contact.new
   end
 
   def create
     @contact = Contact.new(contact_params)
-    if @contact
+    if @contact.save
       flash[:notice] = 'Thank you for your message. We will contact you soon!'
     else
       flash[:error] = 'Cannot send message.'
       render :new
     end
+    redirect_to new_contact_path
   end
 
   private

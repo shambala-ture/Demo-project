@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :set_cart_quantity_price, :only => [:show, :checkout, :apply_coupon, :update_product_quantity]
   before_filter :set_parent_categories
+  before_filter :cms
   def set_parent_categories
     @categories = Category.where(parent_id: nil)
   end
@@ -24,6 +25,11 @@ class ApplicationController < ActionController::Base
       @cart_products[product]={"quantity": v,"total_price": total_price}
       @total += total_price
     end
+  end
+
+  def cms
+    @footer = Cm.where(key: 'footer').first
+    # @header = Cm.where(key: 'header').first
   end
   
 end

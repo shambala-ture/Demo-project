@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   get '/login', to: 'welcome#login'
-  
+ 
   resources :products
 
   get 'add_to_cart', to:'products#add_to_cart'
