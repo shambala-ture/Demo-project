@@ -13,4 +13,10 @@ class UserMailer < ApplicationMailer
     )
     mail :subject => "Your Order details PDF is attached", :to => order.user.email
   end
+  def email_contact(contact)
+    @admin =Admin.last
+    @contact = contact
+    @url  = 'http://example.com/login'
+    mail(to: @admin.email, subject: 'User message')
+  end
 end

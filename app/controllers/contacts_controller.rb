@@ -12,6 +12,7 @@ class ContactsController < ApplicationController
       flash[:error] = 'Cannot send message.'
       render :new
     end
+    UserMailer.email_contact(@contact).deliver
     redirect_to new_contact_path
   end
 
