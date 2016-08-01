@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'newsletters/new'
+
   get 'blogs/index'
 
   get 'contacts/new'
@@ -29,6 +31,8 @@ Rails.application.routes.draw do
   get 'add_to_cart', to:'products#add_to_cart'
 
   resources :banners
+
+  resources :newsletters
 
   resources :blogs
 
