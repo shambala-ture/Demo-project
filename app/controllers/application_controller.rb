@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_cart_quantity_price, :only => [:show, :checkout, :apply_coupon, :update_product_quantity]
   before_filter :set_parent_categories
   before_filter :cms
+  # before_action :setup_mcapi
   def set_parent_categories
     @categories = Category.where(parent_id: nil)
   end
@@ -31,5 +32,4 @@ class ApplicationController < ActionController::Base
     @footer = Cm.where(key: 'footer').first
     # @header = Cm.where(key: 'header').first
   end
-  
 end

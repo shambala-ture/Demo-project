@@ -32,7 +32,8 @@ Rails.application.routes.draw do
 
   resources :banners
 
-  resources :newsletters
+  resources :newsletters, only: :create
+  
 
   resources :blogs
 

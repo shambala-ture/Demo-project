@@ -30,7 +30,11 @@ gem 'wicked_pdf', '~>0.11.0'
 
 gem 'wkhtmltopdf-binary'
 
- gem 'wkhtmltopdf-binary-edge'
+gem 'wkhtmltopdf-binary-edge'
+
+gem 'dotenv-rails', :groups => [:development]
+
+gem 'gibbon', '~> 1.0'
 
 gem 'stripe'
 
