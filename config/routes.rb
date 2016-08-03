@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
+
   get 'newsletters/new'
 
   get 'blogs/index'
@@ -25,6 +27,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   get '/login', to: 'welcome#login'
+  get '/faq', to: 'welcome#faq'
+  get '/online', to: 'welcome#online'
  
   resources :products
 

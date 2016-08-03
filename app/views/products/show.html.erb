@@ -71,18 +71,30 @@
                 </ul>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                 <p><b>Write Your Review</b></p>
-                
-                <form action="#">
+                <%# binding.pry%>
+               <!--  <%#= form_for @product do |f| %>
                   <span>
-                    <input type="text" placeholder="Your Name">
-                    <input type="email" placeholder="Email Address">
+                    <%#= f.label :name %><br><%#= f.text_field :name, :required => true, :placeholder => "Your Name"%>
+                    <%#= f.label :email %><br><%#= f.text_field :email, :required => true, :placeholder => "Email Address"%>
                   </span>
-                  <textarea name=""></textarea>
-                  <b>Rating: </b> <%= image_tag asset_path('rating.png')%>
+                  <%#= f.label :message %><br><%#= f.text_area :message, :required => true, :class => "form-control", row: "8", :placeholder => "Message"%>
+                  <b>Rating: </b> <%#= image_tag asset_path('rating.png')%>
+                  <%#= button_tag 'Submit', :class=> "btn btn-primary pull-right" %>          
+                <%# end %> -->
+                
+                <form action="/">
+                  <span>
+                    <input type="text" name="name" placeholder="Your Name">
+                    <input type="email" name="email"placeholder="Email Address">
+                  </span>
+                  <textarea name="message"></textarea>
+                  <b>Rating: </b> <%#= image_tag asset_path('rating.png')%>
                   <button type="button" class="btn btn-default pull-right">
                     Submit
                   </button>
                 </form>
+
+
               </div>
             </div>
             

@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   def show    
     @product = Product.find(params[:id])
   end
+  
   def add_to_cart
     session[:product_id] << params["id"]
     set_cart_quantity_price

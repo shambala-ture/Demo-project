@@ -12,4 +12,13 @@ class WelcomeController < ApplicationController
 
     
   end
+
+  def faq
+    
+  end
+
+  def online
+    
+  end
+
 end

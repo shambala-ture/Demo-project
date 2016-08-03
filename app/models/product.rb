@@ -6,4 +6,5 @@ class Product < ActiveRecord::Base
   has_many :order_details
   has_many :orders, through: :order_details
   has_many :user_wish_lists
+  has_many :reviews
 end
