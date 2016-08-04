@@ -6,14 +6,20 @@ class OrdersController < ApplicationController
   end
 
   def search
-    if params[:search_id].present? && params[:search_email].present?
-      # @orders = Order.where(:id => params[:search_id])
-      # @orders = Order.where(:email => params[:search_email])
-      @orders = Order.joins(:user).where("orders.id = ? and users.email = ?", params[:search_id], params[:search_email])
-    else
-      @orders = current_user.orders.order('created_at DESC')
-    end
+      if params[:search_id].present?
+        @orders = Order.where("orders.id = ?",params[:search_id])
+        elsif params[:search_created_at].present?
+          @orders = Order.where(["DATE(created_at) = ?", params[:search_created_at]])
+        elsif params[:search_id].present? && params[:search_created_at].present?
+          @orders = Order.where("orders.id = ? and DATE(created_at) = ?", params[:search_id], params[:search_created_at])
+        else
+          @orders = current_user.orders.order('created_at DESC')
+      end
     render 'index'
+  end
+
+  def status
+    # @order = Order.find(params[:id])
   end
 
   def show

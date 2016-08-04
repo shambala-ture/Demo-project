@@ -49,13 +49,15 @@ Rails.application.routes.draw do
 
   resources :carts
 
+  get 'orders/status', to: 'orders#status'
+
   resources :orders do
     collection do
       get 'search'
     end
   end
 
-  # get 'orders/search', to: 'orders#search'
+  
 
   # get '/payment', to: 'orders#show', as: 'payment'
   resources :addresses

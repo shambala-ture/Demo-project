@@ -10,7 +10,7 @@
     <div class="pull-right">
       <%= form_tag(search_orders_path, :method => "get", id: "search-form") do %>
         <%= text_field_tag :search_id, params[:search_id], placeholder: "Search Id" %>
-        <%= text_field_tag :search_email, params[:search_email], placeholder: "Search Email" %>
+        <%= text_field_tag :search_created_at, params[:search_created_at], placeholder: "Search Date" %>
         <%= submit_tag "Search" %>
       <% end %>
     </div>

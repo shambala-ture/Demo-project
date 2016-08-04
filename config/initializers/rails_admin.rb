@@ -21,6 +21,52 @@ RailsAdmin.config do |config|
     end
     
   end
+  config.model Contact do
+    edit do
+      # For RailsAdmin >= 0.5.0
+      field :message, :ck_editor
+      field :name
+      field :email
+      field :contact_no
+      field :note
+      # For RailsAdmin < 0.5.0
+      # field :description do
+      #   ckeditor true
+      # end
+    end
+    list do
+      field :message do
+        pretty_value do
+          value.html_safe
+        end
+      end
+      field :name
+      field :email
+      field :contact_no
+      field :note
+    end
+    
+  end
+  config.model Cm do
+    edit do
+      # For RailsAdmin >= 0.5.0
+      field :value, :ck_editor
+      field :key
+      # For RailsAdmin < 0.5.0
+      # field :description do
+      #   ckeditor true
+      # end
+    end
+    list do
+      field :value do
+        pretty_value do
+          value.html_safe
+        end
+      end
+      field :key
+    end
+    
+  end
   ### Popular gems integration
 
   ## == Devise ==

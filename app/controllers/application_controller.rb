@@ -30,6 +30,8 @@ class ApplicationController < ActionController::Base
 
   def cms
     @footer = Cm.where(key: 'footer').first
+    @faq =Cm.where(key: 'faq').first
+    @status = Cm.where(key: 'status').first
     # @header = Cm.where(key: 'header').first
   end
 end
