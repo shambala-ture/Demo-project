@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :used_coupon, :dependent => :destroy
   has_many :user_wish_lists
-  # after_create :newsletter
+  has_many :reviews
 
   def self.from_omniauth(auth)
     identity = Identity.where(provider: auth.provider, uid: auth.uid).first_or_create
@@ -25,11 +25,4 @@ class User < ActiveRecord::Base
     identity.update(user_id: user.id)
     user
   end
-
-  # def newsletter
-  #   binding.pry
-  #   user = User.where(email: email).first
-  #   gb = Gibbon::API.new
-  #   gb.lists.subscribe({:id => ENV["MAILCHIMP_LIST_ID"], :email => {:email => user.email}, :merge_vars => {:FNAME => user.first_name, :LNAME => user.last_name}, :double_optin => false})
-  # end
 end

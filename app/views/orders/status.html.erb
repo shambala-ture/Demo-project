@@ -1,23 +1,50 @@
-<%= @status.value.html_safe %>
-<!-- <section id="cart_items">
+<%#= @status.value.html_safe %>
+<section id="cart_items">
   <div class="container">
     <div class="breadcrumbs">
       <ol class="breadcrumb">
-        <li><%#= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Home', root_path %></li>
         <li class="active">My Orders</li>
       </ol>
     </div>
     <div class="table-responsive cart_info">
     <div class="pull-left">
-      <%#= form_tag(search_orders_path, :method => "get", id: "search-form") do %>
-        <%#= text_field_tag :search_id, params[:search_id], placeholder: "Search Id" %>
+      <%= form_tag(orders_status_path, :method => "get", id: "search-form") do %>
+        <%#= hidden_field_tag :order_id, orders_status_path(order)%>
+        <%= text_field_tag :search_id, params[:search_id], placeholder: "Search Id" %>
         <%#= text_field_tag :search_created_at, params[:search_created_at], placeholder: "Search Date" %>
-        <%#= submit_tag "Search" %>
-      <%# end %>
+        <%= submit_tag "Search" %>
+      <% end %>
     </div>
+    </div>
+     <div class="table-responsive cart_info">
+
+      <% binding.pry %>
+      <%# if @order.id == nil %>
+        <table class="table table-condensed">
+          <thead>
+            <tr class="cart_menu">
+              <td class="image">Order Id</td>
+              <td class="description">Order Date</td>
+              <td class="total">Status</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%#= @order.id %></td>
+              <td><%#= @order.created_at.strftime("%d %b %Y") %></td>
+              <!-- <td><%#= link_to "Show", order_path(order) %></td> -->
+              <%#= link_to "status", order_path(order) %>
+              <td><%#= @order.status %></td>
+            </tr>
+          </tbody>
+        </table>
+      <%# else %>
+        <!-- <p>You haven't placed any order yet.</p> -->
+      <%# end %>        
     </div>
   </div>
-</section> -->
+</section>
 
 <!-- <section id="cart_items">
   <div class="container">
@@ -37,3 +64,20 @@
     </div>
   </div>
 </section> -->
+<!-- <section id="cart_items">
+<div class="container">
+<div class="breadcrumbs">
+<ol class="breadcrumb">
+  <li><a href="/welcome">Home</a></li>
+  <li class="active">My Orders</li>
+</ol>
+</div>
+<h3>Enter your <strong>Order Id</strong> to track your order: </h3>
+<div class="table-responsive cart_info">
+<div class="pull-left">
+<form accept-charset="UTF-8" action="/orders/search" id="search-form" method="get"><input name="utf8" type="hidden" value="✓" /> <input id="search_id" name="search_id" placeholder="Search Id" type="text" /> <input name="commit" type="submit" value="Search" />&nbsp;</form>
+</div>
+</div>
+</div>
+</section>
+ -->

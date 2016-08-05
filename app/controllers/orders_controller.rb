@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:status,:search]
   before_filter :set_cart_quantity_price
   def index
     @orders = current_user.orders
@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def status
-    # @order = Order.find(params[:id])
+      # @order = Order.find(params[:search_id])
   end
 
   def show

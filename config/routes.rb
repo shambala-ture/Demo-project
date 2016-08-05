@@ -32,12 +32,15 @@ Rails.application.routes.draw do
  
   resources :products
 
+  post '/products/reviews', to: 'products#create'
+
   get 'add_to_cart', to:'products#add_to_cart'
 
   resources :banners
 
   resources :newsletters, only: :create
   
+  resources :reviews
 
   resources :blogs
 
