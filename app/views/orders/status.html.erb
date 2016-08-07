@@ -17,10 +17,9 @@
       <% end %>
     </div>
     </div>
-     <div class="table-responsive cart_info">
-
-      <% binding.pry %>
+    <div class="table-responsive cart_info">
       <%# if @order.id == nil %>
+      <% if @order %>
         <table class="table table-condensed">
           <thead>
             <tr class="cart_menu">
@@ -31,17 +30,17 @@
           </thead>
           <tbody>
             <tr>
-              <td><%#= @order.id %></td>
-              <td><%#= @order.created_at.strftime("%d %b %Y") %></td>
+              <td><%= @order.id %></td>
+              <td><%= @order.created_at.strftime("%d %b %Y") %></td>
               <!-- <td><%#= link_to "Show", order_path(order) %></td> -->
               <%#= link_to "status", order_path(order) %>
-              <td><%#= @order.status %></td>
+              <td><%= @order.status %></td>
             </tr>
           </tbody>
         </table>
-      <%# else %>
-        <!-- <p>You haven't placed any order yet.</p> -->
-      <%# end %>        
+      <% else %>
+        <p>You haven't placed any order yet.</p>
+      <% end %>        
     </div>
   </div>
 </section>

@@ -6,12 +6,8 @@ class OrdersController < ApplicationController
   end
 
   def search
-      if params[:search_id].present?
-        @orders = Order.where("orders.id = ?",params[:search_id])
-        elsif params[:search_created_at].present?
-          @orders = Order.where(["DATE(created_at) = ?", params[:search_created_at]])
-        elsif params[:search_id].present? && params[:search_created_at].present?
-          @orders = Order.where("orders.id = ? and DATE(created_at) = ?", params[:search_id], params[:search_created_at])
+      if params[:search_id].present? || params[:search_created_at].present?
+          @orders = Order.where("orders.id = ? or DATE(created_at) = ?", params[:search_id], params[:search_created_at])
         else
           @orders = current_user.orders.order('created_at DESC')
       end
@@ -19,7 +15,13 @@ class OrdersController < ApplicationController
   end
 
   def status
-      # @order = Order.find(params[:search_id])
+    if params[:search_id].present?
+      @order = Order.find_by(id: params[:search_id])
+    end
+  end
+
+  def report
+    
   end
 
   def show
