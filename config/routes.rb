@@ -54,6 +54,8 @@ Rails.application.routes.draw do
 
   get 'orders/status', to: 'orders#status'
 
+  get 'orders/report', to: 'orders#report'
+
   resources :orders do
     collection do
       get 'search'

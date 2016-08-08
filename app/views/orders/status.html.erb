@@ -7,6 +7,7 @@
         <li class="active">My Orders</li>
       </ol>
     </div>
+    <h3>Enter your <strong>Order Id</strong> to track your order: </h3>
     <div class="table-responsive cart_info">
     <div class="pull-left">
       <%= form_tag(orders_status_path, :method => "get", id: "search-form") do %>
@@ -18,7 +19,6 @@
     </div>
     </div>
     <div class="table-responsive cart_info">
-      <%# if @order.id == nil %>
       <% if @order %>
         <table class="table table-condensed">
           <thead>
@@ -32,14 +32,12 @@
             <tr>
               <td><%= @order.id %></td>
               <td><%= @order.created_at.strftime("%d %b %Y") %></td>
-              <!-- <td><%#= link_to "Show", order_path(order) %></td> -->
-              <%#= link_to "status", order_path(order) %>
               <td><%= @order.status %></td>
             </tr>
           </tbody>
         </table>
-      <% else %>
-        <p>You haven't placed any order yet.</p>
+      <%# else %>
+        <!-- <p>You haven't placed any order yet.</p> -->
       <% end %>        
     </div>
   </div>

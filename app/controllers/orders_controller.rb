@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
-  before_filter :authenticate_user!, except: [:status,:search]
+  before_filter :authenticate_user!, except: [:status,:search, :report]
   before_filter :set_cart_quantity_price
+  before_filter :authenticate_admin!, only: [:report]
+  
+
   def index
     @orders = current_user.orders
   end
@@ -21,7 +24,10 @@ class OrdersController < ApplicationController
   end
 
   def report
-    
+    @completedorder = Order.where(status: "completed").count
+    @shippedorder = Order.where(status: "shipped").count
+    @canceledorder = Order.where(status: "canceled").count
+    @pendingorder = Order.where(status: "pending").count
   end
 
   def show

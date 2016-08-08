@@ -83,7 +83,9 @@
                     <%= f.text_field :email, :required => true, :placeholder => "Email Address"%>
                   </span>
                   <%= f.label :message %><br><%= f.text_area :message, :required => true, :class => "form-control", row: "8", :placeholder => "Message"%>
-                  <b>Rating: </b> <%= image_tag asset_path('rating.png')%>
+                  <%= f.label :rating %>:  <%= f.text_field :rating, :required => true, size: "2"%>
+                  <!-- Rating:<input name="rating" size="2"> -->
+                  <!-- <b>Rating: </b> <%#= image_tag asset_path('rating.png')%> -->
                   <%= hidden_field_tag :product_id, @product.id %>
                   <%= button_tag 'Submit', :class=> "btn btn-primary pull-right" %>          
                 <% end %>                
