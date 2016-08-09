@@ -24,10 +24,22 @@ class OrdersController < ApplicationController
   end
 
   def report
-    @completedorder = Order.where(status: "completed").count
-    @shippedorder = Order.where(status: "shipped").count
-    @canceledorder = Order.where(status: "canceled").count
-    @pendingorder = Order.where(status: "pending").count
+    @order = Order.group(:status).count
+    @first_order = Order.first
+    @last_order = Order.last    
+    @coupon_list = []
+    @coupon = Coupon.all
+    @coupon.each do |coupon|
+      b = coupon.code
+      puts b
+      @coupon_list.push(b.to_i)
+    end
+    @coupon_used = UsedCoupon.group(:coupon_id).count
+    #  @coupon_used_list = []
+    #  @coupon_used = UsedCoupon.first(5)
+    #  @coupon_used.each do |i| 
+    #   @coupon_used_list[i] = .count(i) 
+    #  end
   end
 
   def show

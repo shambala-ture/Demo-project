@@ -1,52 +1,87 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-<div id="container" style="width: 600px; height: 400px; margin: 0 auto"></div>
+<div class="container">
+<section>
+<div class ="pull-left" id="container" style="width: 600px; height: 400px; margin: 0 auto"></div>
+<div class ="pull-right" id="containerbar" style="width: 600px; height: 400px; margin: 0 auto"></div>
+</section>
+</div>
 <script>
-$(function () {
+  $(function () {
     $('#container').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-        title: {
-            text: 'Orders shared July, 2016 to Aug, 2016'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      title: {
+          text: "Orders shared <%= @first_order.created_at.strftime('%d %b %Y')%> to <%= @last_order.created_at.strftime('%d %b %Y')%>"
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+            style: {
+                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
             }
-        },
-        series: [{
-            name: 'Orders',
-            colorByPoint: true,
-            data: [{
-                name: 'Completed Orders',
-                y: <%= @completedorder %>
-            }, {
-                name: 'Shipped Orders',
-                y: <%= @shippedorder %>            
-            }, {
-                name: 'Pending Orders',
-                y: <%= @pendingorder %>
-            }, {
-                name: 'Cancelled Orders',
-                y: <%= @canceledorder %>
-            }]
+          }
+        }
+      },
+      series: [{
+        name: 'Orders',
+        colorByPoint: true,
+        data: [{
+            name: 'Completed Orders',
+            y: <%= @order["completed"] %>
+        }, {
+            name: 'Shipped Orders',
+            y: <%= @order["shipped"] %>            
+        }, {
+            name: 'Pending Orders',
+            y: <%= @order["pending"] %>
+        }, {
+            name: 'Canceled Orders',
+            y: <%= @order["canceled"] %>
         }]
+      }]
     });
-});
+  });
+</script>
+<script>
+  $(function () {
+    $('#containerbar').highcharts({
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Stacked column chart'
+      },
+      xAxis: {
+        categories: <%= @coupon_list %>
+      },
+      yAxis: {
+        min: 0,
+        title: {
+            text: 'Total coupon used'
+        },
+        stackLabels: {
+            enabled: true,
+            style: {
+                fontWeight: 'bold',
+                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+            }
+        }
+      },
+      series: [{
+        data: [<%= @coupon_used[1]%>, <%= @coupon_used[2]%>, <%= @coupon_used[3]%>]
+      }]
+    });
+  });
 </script>
