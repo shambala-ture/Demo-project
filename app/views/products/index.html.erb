@@ -1,0 +1,35 @@
+<section>
+  <div class="container">
+    <div class="col-sm-4">
+      <h4>Products</h4>
+      <!-- <p>
+        Download:
+        <%#= link_to "CSV", products_path(format: "csv") %> |
+        <%#= link_to "Excel", products_path(format: "xls") %>
+      </p> -->
+      <table id="products">
+        <tr>
+          <th>Product Name</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.description %></td>
+          <td><%= product.quantity %></td>
+          <td>Rs.<%= product.price %></td>
+        </tr>
+      <% end %>
+      </table>
+      </div>
+      <div class="col-sm-4">
+      <h4>Import Products</h4>
+        <%= form_tag products_path, multipart: true do %>
+          <%= file_field_tag :file%>
+          <%= submit_tag "Confirm", {class:'btn btn-primary'} %>
+        <% end %>
+      <!-- <p><%#= link_to "Confirm products", import_products_path %></p> -->
+    </div>
+</section>

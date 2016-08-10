@@ -118,7 +118,9 @@
                                     </ul> -->
                 </li>
                 <li><%= link_to 'My Order', orders_path, :class => 'navbar-link' %></li>
+                <% if admin_signed_in? %>
                 <li><%= link_to 'Report', orders_report_path, :class => 'navbar-link' %></li>
+                <% end %>
                 <li><%= link_to 'Contact', contacts_new_path%></li>
               </ul>
             </div>

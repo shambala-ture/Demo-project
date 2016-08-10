@@ -28,6 +28,16 @@ gem 'ckeditor'
 
 gem 'wicked_pdf', '~>0.11.0'
 
+gem 'roo'
+
+gem 'roo-xls'
+
+gem 'iconv', '~> 1.0.3'
+
+gem 'rack-utf8_sanitizer'
+
+gem 'handle_invalid_percent_encoding_requests'
+
 gem 'wkhtmltopdf-binary'
 
 gem 'wkhtmltopdf-binary-edge'

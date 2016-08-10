@@ -9,8 +9,12 @@ class OrdersController < ApplicationController
   end
 
   def search
-      if params[:search_id].present? || params[:search_created_at].present?
-          @orders = Order.where("orders.id = ? or DATE(created_at) = ?", params[:search_id], params[:search_created_at])
+      if params[:search_id].present?
+        @orders = Order.where("orders.id = ?",params[:search_id])
+        elsif params[:search_created_at].present?
+          @orders = Order.where(["DATE(created_at) = ?", params[:search_created_at]])
+        elsif params[:search_id].present? && params[:search_created_at].present?
+          @orders = Order.where("orders.id = ? and DATE(created_at) = ?", params[:search_id], params[:search_created_at])
         else
           @orders = current_user.orders.order('created_at DESC')
       end
@@ -27,19 +31,15 @@ class OrdersController < ApplicationController
     @order = Order.group(:status).count
     @first_order = Order.first
     @last_order = Order.last    
-    @coupon_list = []
-    @coupon = Coupon.all
-    @coupon.each do |coupon|
+    @coupon_code = []
+    @coupon_id = []
+    @coupons = Coupon.joins(:used_coupon).select('coupon_id, code, count(coupon_id)').group('coupon_id, coupons.code').order('count DESC').limit(5)
+    @coupons.each do |coupon|
       b = coupon.code
-      puts b
-      @coupon_list.push(b.to_i)
+      @coupon_code.push(b)
+      c = coupon.count
+      @coupon_id.push(c)
     end
-    @coupon_used = UsedCoupon.group(:coupon_id).count
-    #  @coupon_used_list = []
-    #  @coupon_used = UsedCoupon.first(5)
-    #  @coupon_used.each do |i| 
-    #   @coupon_used_list[i] = .count(i) 
-    #  end
   end
 
   def show

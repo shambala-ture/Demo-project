@@ -30,7 +30,12 @@ Rails.application.routes.draw do
   get '/faq', to: 'welcome#faq'
   get '/online', to: 'welcome#online'
  
-  resources :products
+  resources :products do
+    collection do
+      post 'import'
+    end
+  end
+  
 
   post '/products/reviews', to: 'products#create'
 

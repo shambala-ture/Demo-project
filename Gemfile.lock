@@ -82,10 +82,14 @@ GEM
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
+    handle_invalid_percent_encoding_requests (1.0.2)
+      rack-utf8_sanitizer
+      rails (>= 3.1)
     hashie (3.4.4)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    iconv (1.0.4)
     jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -161,6 +165,8 @@ GEM
       rack (~> 1.1)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-utf8_sanitizer (1.3.2)
+      rack (>= 1.0, < 3.0)
     rails (4.2.6)
       actionmailer (= 4.2.6)
       actionpack (= 4.2.6)
@@ -208,6 +214,15 @@ GEM
       railties (>= 4.2.0, < 5.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    roo (2.4.0)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
+    roo-xls (1.0.0)
+      nokogiri
+      roo (>= 2.0.0beta1, < 3)
+      spreadsheet (> 0.9.0)
+    ruby-ole (1.2.12)
+    rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.4)
@@ -220,6 +235,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     slop (3.6.0)
+    spreadsheet (1.1.3)
+      ruby-ole (>= 1.0)
     spring (1.7.1)
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
@@ -265,6 +282,8 @@ DEPENDENCIES
   devise
   dotenv-rails
   gibbon (~> 1.0)
+  handle_invalid_percent_encoding_requests
+  iconv (~> 1.0.3)
   jbuilder (~> 2.0)
   jquery-rails
   omniauth-facebook
@@ -272,8 +291,11 @@ DEPENDENCIES
   paperclip
   pg (~> 0.15)
   pry-rails
+  rack-utf8_sanitizer
   rails (= 4.2.6)
   rails_admin
+  roo
+  roo-xls
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

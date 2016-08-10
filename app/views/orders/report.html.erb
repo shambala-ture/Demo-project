@@ -16,7 +16,7 @@
           type: 'pie'
       },
       title: {
-          text: "Orders shared <%= @first_order.created_at.strftime('%d %b %Y')%> to <%= @last_order.created_at.strftime('%d %b %Y')%>"
+          text: "Orders between <%= @first_order.created_at.strftime('%d %b %Y')%> to <%= @last_order.created_at.strftime('%d %b %Y')%>"
       },
       tooltip: {
           pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -64,7 +64,7 @@
         text: 'Stacked column chart'
       },
       xAxis: {
-        categories: <%= @coupon_list %>
+        categories: <%= raw @coupon_code.to_json %>
       },
       yAxis: {
         min: 0,
@@ -80,7 +80,7 @@
         }
       },
       series: [{
-        data: [<%= @coupon_used[1]%>, <%= @coupon_used[2]%>, <%= @coupon_used[3]%>]
+        data: <%= raw @coupon_id.to_json %>
       }]
     });
   });
