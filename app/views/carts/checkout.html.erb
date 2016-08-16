@@ -1,27 +1,26 @@
 <section id="cart_items">
-    <div class="container">
-      <div class="breadcrumbs">
-        <ol class="breadcrumb">
-          <li><%= link_to 'Home', root_path %></li>
-          <li class="active">Check out</li>
-        </ol>
-      </div><!--/breadcrums-->
+  <div class="container">
+    <div class="breadcrumbs">
+      <ol class="breadcrumb">
+        <li><%= link_to 'Home', root_path %></li>
+        <li class="active">Check out</li>
+      </ol>
+    </div><!--/breadcrums-->
 
-      <div class="table-responsive cart_info">
-        <table class="table table-condensed">
-          <thead>
-            <tr class="cart_menu">
-              <td class="image">Item</td>
-              <td class="description"></td>
-              <td class="price">Price</td>
-              <td class="quantity">Quantity</td>
-              <td class="total">Total</td>
-              <td></td>
-            </tr>
-          </thead>
-          <tbody>
-            <% @cart_products.each do |product,v| %>
-              <%# if @cart_products[@product].count > 0 %>
+    <div class="table-responsive cart_info">
+      <table class="table table-condensed">
+        <thead>
+          <tr class="cart_menu">
+            <td class="image">Item</td>
+            <td class="description"></td>
+            <td class="price">Price</td>
+            <td class="quantity">Quantity</td>
+            <td class="total">Total</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_products.each do |product,v| %>
             <tr id="product_<%= product.id %>">
               <td class="cart_product">
                 <a href="#">
@@ -55,17 +54,15 @@
               data: { confirm: 'Are you sure?' }, method: :delete, :class=>"cart_quantity_delete"%>
               </td>
             </tr>
-            <%# end %>
-            <% end %>
+          <% end %>
             <tr id="coupon_and_total">
               <%= render 'coupon_total' %>
             </tr>
-          </tbody>
-        </table>
-         <div class ="pull-right">
-          <%#= link_to "Update",  user_carts_checkout_path, :class => "btn btn-default check_out"%>
-          <%= link_to "Make a Payment", addresses_path ,:output_flash=>"select_address", :class => "btn btn-default check_out"%>
-        </div>
+        </tbody>
+      </table>
+      <div class ="pull-right">
+        <%= link_to "Make a Payment", addresses_path ,:output_flash=>"select_address", :class => "btn btn-default check_out"%>
       </div>
     </div>
-  </section> <!--/#cart_items-->
+  </div>
+</section> <!--/#cart_items-->

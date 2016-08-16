@@ -1,6 +1,5 @@
 class AddressesController < ApplicationController
  
-
   def index
     @addresses=current_user.addresses
     # flash[:notice] = "Select your Shipping or Billing addresses #{params[:output_flash=>"select_address"]}."

@@ -1,12 +1,8 @@
 class ProductsController < ApplicationController
-
+  before_filter :authenticate_admin!, only: [:import]
+  
   def index
     @products = Product.order(:name)
-    # respond_to do |format|
-    #   format.html
-    #   format.csv { send_data @products.to_csv }
-    #   format.xls # { send_data @products.to_csv(col_sep: "\t") }
-    # end
   end
 
   def show
@@ -34,8 +30,8 @@ class ProductsController < ApplicationController
   end
 
   def import
-    Product.import(params[:file])
-    redirect_to root_url, notice: "Products imported."
+    @products = Product.import(params[:file])
+    redirect_to products_path, notice: "Products imported."
   end
 
  private

@@ -35,7 +35,6 @@ Rails.application.routes.draw do
       post 'import'
     end
   end
-  
 
   post '/products/reviews', to: 'products#create'
 

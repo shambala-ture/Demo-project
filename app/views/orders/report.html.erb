@@ -1,14 +1,14 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-<div class="container">
 <section>
-<div class ="pull-left" id="container" style="width: 600px; height: 400px; margin: 0 auto"></div>
-<div class ="pull-right" id="containerbar" style="width: 600px; height: 400px; margin: 0 auto"></div>
-</section>
+<div class="container">
+<div id="containerpie" style="width: 600px; height: 400px; margin: 0 auto"></div><br><br>
+<div id="containerbar" style="width: 600px; height: 400px; margin: 0 auto"></div>
 </div>
+</section>
 <script>
   $(function () {
-    $('#container').highcharts({
+    $('#containerpie').highcharts({
       chart: {
           plotBackgroundColor: null,
           plotBorderWidth: null,
@@ -61,7 +61,7 @@
         type: 'column'
       },
       title: {
-        text: 'Stacked column chart'
+        text: 'Top 5 used coupons.'
       },
       xAxis: {
         categories: <%= raw @coupon_code.to_json %>
@@ -80,6 +80,7 @@
         }
       },
       series: [{
+        name: 'coupons used',
         data: <%= raw @coupon_id.to_json %>
       }]
     });

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  require 'roo'
   validates :email, uniqueness: true
   validates :password, :confirmation => true
   devise :database_authenticatable, :registerable, :confirmable,
@@ -25,4 +26,12 @@ class User < ActiveRecord::Base
     identity.update(user_id: user.id)
     user
   end
+
+  # def self.import(file)
+  #   binding.pry
+  #   s = Roo::Spreadsheet.open(file)
+  #   # s = Roo::Openoffice.open(file, extension: :xls) 
+  #   s.default_sheet = s.sheets.first
+  # end
+
 end

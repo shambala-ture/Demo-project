@@ -13,8 +13,10 @@
           <div class="col-sm-6">
             <div class="social-icons pull-right">
               <ul class="nav navbar-nav">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><%= link_to '<i class="fa fa-facebook"></i>'.html_safe, user_omniauth_authorize_path(:facebook) %></li>
+                <!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li> -->
+                <li><%= link_to '<i class="fa fa-twitter"></i>'.html_safe, user_omniauth_authorize_path(:twitter) %></li>
+                <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li> -->
                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                 <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -64,12 +66,15 @@
 
                 <li><%= link_to '<i class="fa fa-star"></i>Wishlist'.html_safe, userwishlists_path %></li>
                 
-                
-                <li><%= link_to '<i class="fa fa-crosshairs"></i>Checkout'.html_safe,user_carts_checkout_path %></li>          
+                <% if session[:product_id].present? %>
+                  <li><%= link_to '<i class="fa fa-crosshairs"></i>Checkout'.html_safe,user_carts_checkout_path %></li>
+                <% else %>
+                  <% flash[:notice] = "Please choose your product for checkout page." %>
+                <% end %>          
 
                 <li><%= link_to '<i class="fa fa-shopping-cart"></i>Cart' "<span id='add_to_cart'>(#{(session[:product_id].count)})</span>".html_safe,user_carts_path %></li>
 
-                <li><% if user_signed_in? %>Logged in <strong><%= current_user.email %></strong>.</li>
+                <li><% if user_signed_in? %><strong><%= current_user.email %></strong>.</li>
                 <%#= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
                 <%#= link_to 'Addresses', addresses_path, :class => 'navbar-link' %>
                 <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>

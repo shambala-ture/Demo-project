@@ -1,8 +1,11 @@
 class Product < ActiveRecord::Base
   require 'rubygems'
   require 'roo'
-
-  validates :description, :name, :price, :quantity, :presence =>true
+  validates :name, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }, presence: true
+  validates :description, length: { maximum: 50 }, presence: true
+  validates :price, :numericality => true, length: { maximum:6 }, presence: true
+  validates :quantity, length: { maximum:6 }, presence: true
+  validates :status, presence: true
   has_many :product_categories
   has_many :categories, through: :product_categories
   has_many :product_images
@@ -11,37 +14,36 @@ class Product < ActiveRecord::Base
   has_many :user_wish_lists
   has_many :reviews
 
-  def self.import(file)
-    s= Roo::Spreadsheet.open(file)
-    # s = Roo::Openoffice.open(file, extension: :xls) 
-    s.default_sheet = s.sheets.first
-    4.upto(7) do |line|
-      name       = s.string(line,'A')
-      description = s.string(line,'B')
-      quantity   = s.float(line,'C')
-      price      = s.float(line,'D')
-    end
-  end
-  # def self.import(file)
-  #   # csv_file = File.read
-  #   CSV.foreach(file.path) do |row|
-  #     Product.create! row.to_hash
-  #   end
-  #   spreadsheet = open_spreadsheet(file)
-  #   header = spreadsheet.row(1)
-  #   (2..spreadsheet.last_row).each do |i|
-  #     row = Hash[[header, spreadsheet.row(i)].transpose]
-  #     product = find_by_id(row["id"]) || new
-  #     product.attributes = row.to_hash.slice(*accessible_attributes)
-  #     product.save!
-  #   end
-  # end
-  # def self.open_spreadsheet(file)
-  #   case File.extname(file.original_filename)
-  #   when '.csv' then Csv.new(file.path, nil, :ignore)
-  #   when '.xls' then Excel.new(file.path, nil, :ignore)
-  #   when '.xlsx' then Excelx.new(file.path, nil, :ignore)
-  #   else raise "Unknown file type: #{file.original_filename}"
-  #   end
-  # end
+   def self.import(file)
+      s = Roo::Spreadsheet.open(file)
+      # s = Roo::Openoffice.open(file, extension: :xls) 
+      s.default_sheet = s.sheets.first
+      # products = Hash.new
+      # s.row(1).each_with_index {|product,i|
+      # products[product] = i
+      # }
+      ((s.first_row + 1)..s.last_row).each do |row|
+        break if row[0].nil? # if first cell empty
+        # puts row.join(',') # looks like it calls "to_s" on each cell's Value
+        product = Product.create!(
+        name: s.row(row)[0],
+        description: s.row(row)[1],
+        quantity: s.row(row)[2],
+        price: s.row(row)[3]
+        )
+        # print "#{name}, #{description}, #{quantity}, #{price}\n\n"
+      end
+    
+      # s.each do |row|
+      #   break if row[0].nil? # if first cell empty
+      #   puts row.join(',') # looks like it calls "to_s" on each cell's Value
+      #   product = Product.create!(
+      #     name: s.row(2)[0],
+      #     description: s.row(2)[1],
+      #     quantity: s.row(2)[2],
+      #     price: s.row(2)[3]
+      #     )
+      #   product
+      # end
+   end
 end

@@ -1,8 +1,7 @@
 class NewslettersController < ApplicationController
-  skip_before_filter  :verify_authenticity_token
+  # skip_before_filter  :verify_authenticity_token
 
   def create
-    
     if params[:newsletter][:email].present?
       gb = Gibbon::API.new
       begin
